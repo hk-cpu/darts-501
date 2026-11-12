@@ -1,10 +1,11 @@
-# The Oche: 501 darts scorer with camera assist
+# The Oche: 501 darts tap scorer
 
-Static, single-file web app (`index.html`, everything inline, no CDNs or libraries). Host on GitHub Pages (HTTPS is needed for the camera).
+Static, single-file web app (`index.html`, everything inline). Hosted on GitHub Pages.
 
-* **Tap mode**: tap where each dart landed on the board diagram, or use the S/D/T + number picker.
-* **Camera mode**: mount the phone facing the board, press *Start camera* and calibrate by tapping the outer double-ring edge at the top of 20, right of 6, bottom of 3 and left of 11. Each dart the camera sees shows up as a pending dart. Confirm it, fix it (tap the board or use the picker) or let it auto-confirm.
+* **Board**: tap where each dart landed. The double and treble rings are drawn about 4–5× wider than on a real board, so they're easy to hit, and the hit areas match the drawing exactly. *Big* / *Huge* ring sizes.
+* **Clean taps only**: the dart is taken from where your finger went down. If you slide more than 12 px, use two fingers, or let the browser scroll, nothing scores. While your finger is down, a bubble shows what will score (e.g. `T20 · 60`).
+* **Number pad**: tap the number (1–20), then Single / Double / Treble. There are also buttons for 25, Bull and Miss.
+* **Score caller**: speaks every dart, what's left when you're on a finish, the turn total ("One hundred and eighty!"), and calls Bust and Game shot. You can turn it on or off with the Sound button.
+* **Scoreboard on another phone**: scan a QR code to follow the score live on a second phone, which can also add or undo a dart.
 
-How detection works: frame differencing against the last still picture of the board, a ~0.5 s stillness gate, connected components, dart tip = blob end nearest the camera's foot point (estimated from the calibration homography), then mapped through the homography to the board model and scored.
-
-Everything runs on the phone. No frames are uploaded.
+The earlier camera auto-scoring build is kept in the dev folder's `camera-archive/` and is not shipped.
