@@ -114,6 +114,22 @@ footer{margin-top:16px;display:flex;flex-direction:column;gap:4px;font-size:11px
 header .brand{white-space:nowrap}header button{white-space:nowrap}
 @media(max-width:420px){.brand .eyebrow{display:none}.brand{font-size:15px;letter-spacing:1.5px}.header-meta .chip{padding:6px 10px}}
 
+.voice-row{display:flex;gap:6px;align-items:stretch;margin:8px 2px 0}
+.voice-btn{flex:1;min-height:52px;font-size:17px;border-radius:14px;background:#1f3340}
+.voice-btn[aria-pressed="true"]{background:#7a1f1f;border-color:#ff6b5b;color:#fff;animation:pulse 1.6s ease-in-out infinite}
+.voice-btn.paused{animation:none;opacity:.8}
+@keyframes pulse{50%{box-shadow:0 0 0 6px #ff6b5b33}}
+#voice-mode button{min-height:52px}
+.voice-note{font-size:12px;color:var(--muted);margin:6px 6px 0}.voice-note.warn{color:#ffcc9d}
+.advice{margin-top:12px;padding:10px 12px;border:1px solid #62723e;border-radius:12px;background:#ffffff08}
+.advice-k{font-size:11px;text-transform:uppercase;letter-spacing:1.3px;color:var(--lime)}.advice-title{font-size:20px;font-weight:800;margin:2px 0}
+.advice-detail{font-size:14px;margin:0;color:var(--cream)}.advice-warn{font-size:14px;margin:6px 0 0;color:#ffc6ac;font-weight:700}
+
+.banter{margin:6px 4px 0;padding:8px 12px;border-radius:12px;font-weight:800;font-size:16px;text-align:center;line-height:1.25;animation:pop .25s ease-out}
+.banter.hype{background:#3b3214;border:1px solid var(--gold);color:#ffe9a8}.banter.roast{background:#3a1f1c;border:1px solid #b6493f;color:#ffd2c8}.banter.motivate{background:#16331f;border:1px solid var(--lime);color:var(--lime)}
+@keyframes pop{from{transform:scale(.94);opacity:.4}to{transform:none;opacity:1}}
+.comm-row{display:flex;align-items:center;justify-content:center;gap:4px;margin:12px 2px 0;flex-wrap:wrap}.comm-row .seg button{min-width:48px;min-height:44px;padding:6px 9px}
+
 .remote-card{padding:16px}.remote-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.remote-sub{font-size:13px;margin:4px 0 12px}#remote-state.on{border-color:var(--lime);color:var(--lime)}.wide-btn{width:100%}.remote-panel{margin-top:14px}.remote-grid{display:flex;gap:16px;flex-wrap:wrap;align-items:center}.remote-qr{background:#fff;border-radius:12px;padding:6px;width:min(220px,100%);aspect-ratio:1;flex:none;color:#000;font-size:13px;display:grid;place-items:center}.remote-qr svg{width:100%;height:100%;display:block}.remote-info{flex:1;min-width:200px}.remote-code-row{margin:8px 0 4px;font-size:15px}.remote-code{font-size:28px;letter-spacing:4px;color:var(--lime);font-family:ui-monospace,Menlo,monospace;margin-left:6px}.remote-link{color:var(--gold);word-break:break-all;font-size:13px}.remote-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.remote-actions button{padding:8px 12px;font-size:14px}.remote-check{margin-top:14px;font-size:14px}#remote-msg.warn{color:#ffcc9d}
 .viewer-mode #setup,.viewer-mode #game,.viewer-mode footer{display:none!important}
 .viewer{max-width:980px;margin:0 auto;display:grid;gap:14px}.v-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.v-leg{font-size:15px;color:var(--muted);margin-top:2px}.v-conn{border:1px solid var(--line);border-radius:50px;padding:6px 12px;font-size:13px;font-weight:700;white-space:nowrap}.v-conn.ok{color:var(--lime);border-color:var(--lime)}.v-conn.wait{color:var(--gold);border-color:var(--gold)}.v-conn.bad{color:#ffb0a0;border-color:#b6493f}
@@ -143,13 +159,17 @@ header .brand{white-space:nowrap}header button{white-space:nowrap}
 <div id="aim-strip" class="aim-strip"><span class="aim-k">Aim</span><strong id="aim-short">—</strong><span id="aim-route" class="aim-route"></span></div>
 <section id="input-card" class="input-card" aria-label="Score entry">
 <div class="input-top"><div class="seg" role="group" aria-label="How to enter darts"><button id="mode-board" type="button" aria-pressed="true">🎯 Board</button><button id="mode-pad" type="button" aria-pressed="false">🔢 Pad</button></div><div class="seg seg-small" role="group" aria-label="Ring size" id="ring-size"><span class="seg-label">Rings</span><button id="rings-big" type="button" aria-pressed="true">Big</button><button id="rings-huge" type="button" aria-pressed="false">Huge</button></div></div>
+<div class="voice-row"><button id="voice-toggle" type="button" class="voice-btn" aria-pressed="false">🎤 Voice scoring</button><div class="seg seg-small" role="group" aria-label="What you say" id="voice-mode"><button id="voice-dart" type="button" aria-pressed="true">Per dart</button><button id="voice-total" type="button" aria-pressed="false">Turn total</button></div></div>
+<p id="voice-note" class="voice-note">Shout each dart: “treble twenty”, “double sixteen”, “bull”, “miss”, “undo”, or “scored sixty” for a whole turn. Needs internet: Chrome sends the audio to Google’s speech service.</p>
 <div id="readout" class="readout"><span id="readout-text">Tap where the dart landed</span><button id="readout-undo" type="button" class="readout-undo" hidden>↶ Undo</button></div>
+<div id="banter" class="banter" hidden role="status"></div>
 <div id="board-wrap" class="board-wrap"><svg id="board" viewBox="-236 -236 472 472" role="img" aria-label="Dartboard with enlarged double and treble rings. Tap where the dart landed, or switch to the number pad."><circle r="235" fill="#0d130f" stroke="#56604c" stroke-width="2"/><g id="segments"></g><g id="wires"></g><g id="numbers"></g><g id="markers"></g></svg><div id="bubble" class="bubble" hidden aria-hidden="true"><strong id="bubble-code"></strong><span id="bubble-score"></span></div></div>
 <div id="pad" class="pad" hidden><div class="pad-step" id="pad-step">1 · Pick the number</div><div id="pad-nums" class="pad-nums"></div><div class="pad-step">2 · Pick the ring</div><div class="pad-rings"><button type="button" id="pad-S" data-ring="S" disabled>Single</button><button type="button" id="pad-D" data-ring="D" disabled>Double</button><button type="button" id="pad-T" data-ring="T" disabled>Treble</button></div><div class="pad-specials"><button type="button" id="outer-bull">25 · Outer bull</button><button type="button" id="bull">Bull · 50</button></div></div>
 <div class="action-row"><button id="miss" type="button" class="miss-btn">✕ Miss <span class="muted">· 0</span></button><button id="undo" type="button" class="undo-btn">↶ Undo last</button></div>
+<div class="comm-row"><span class="seg-label">Commentator</span><div class="seg seg-small" role="group" aria-label="Commentator" id="comm-mode"><button type="button" data-comm="off" aria-pressed="false">Off</button><button type="button" data-comm="hype" aria-pressed="false">Hype</button><button type="button" data-comm="roast" aria-pressed="true">Hype + Roast</button><button type="button" data-comm="savage" aria-pressed="false">Savage</button></div></div>
 <p class="board-note" id="board-note">Outer coloured ring = <b>Double</b> · inner coloured ring = <b>Treble</b> · centre = Bull. Rings are drawn bigger than a real board so they're easy to hit. A drag or scroll never scores: only a clean tap.</p>
 </section>
-<section id="hint-card" class="card hint"><div class="hint-title">↗ Your next dart</div><div id="aim-name" class="aim-name"></div><p id="aim-detail" class="subline muted"></p><div id="routes-heading" class="routes-heading"></div><ul id="routes" class="route-list"></ul><p id="hint-note" class="info-note"></p></section>
+<section id="hint-card" class="card hint"><div class="hint-title">↗ Your next dart</div><div id="aim-name" class="aim-name"></div><p id="aim-detail" class="subline muted"></p><div id="advice" class="advice"><div class="advice-k">What’s left · advice</div><div id="advice-title" class="advice-title"></div><p id="advice-detail" class="advice-detail"></p><p id="advice-warn" class="advice-warn" hidden></p></div><div id="routes-heading" class="routes-heading"></div><ul id="routes" class="route-list"></ul><p id="hint-note" class="info-note"></p></section>
 <section class="card scoreboard"><div class="scoreboard-heading"><h2>The scoreboard</h2><span class="muted tiny">3-dart avg · this leg</span></div><div class="table-scroll"><table><thead><tr><th>Player</th><th>Left</th><th>Avg</th><th>Darts</th><th>Last</th><th>Legs</th></tr></thead><tbody id="score-rows"></tbody></table></div></section>
 <section id="remote-card" class="card remote-card" aria-label="Scoreboard on another phone"><div class="remote-head"><div><div class="eyebrow">Scoreboard on another phone</div><p class="muted remote-sub">Friends follow the score live on their own phone. This phone keeps the game.</p></div><span id="remote-state" class="pill">Off</span></div>
 <button id="remote-start" type="button" class="primary wide-btn">📺 Scoreboard on another phone</button>
@@ -240,25 +260,221 @@ function dartPhrase(hit){if(!hit)return'';if(hit.code==='M')return'Miss';if(hit.
 function leftPhrase(C,score,dartsLeft,doubleOut){const r=C.checkouts(score,dartsLeft,doubleOut,1)[0];const base=words(score)+' left';return r?base+', '+r.map(t=>targetName(t.code)).join(', '):base;}
 // Turn total like a match caller.
 function totalPhrase(t){if(t===180)return'One hundred and eighty!';if(t===0)return'No score.';return cap(words(t))+(t>=100?'!':'.');}
-// Full callout for the dart that took `prev` to `next`.
+// Advice module (browser global or node require)
+const A=()=>typeof OcheAdvice!=='undefined'?OcheAdvice:require('./advice.js');
+// What's left + advice for the darts still in hand (or a fresh visit of 3).
+function leftAdvice(C,score,dartsLeft,doubleOut){return A().advise(C,score,dartsLeft,doubleOut).speech;}
+// Full callout for the dart that took `prev` to `next`: the dart, then what's left and what to aim for, every time.
 function forDart(C,prev,next,hit){const parts=[dartPhrase(hit)];if(!prev||!next)return parts[0];const me=prev.current,p=next.players[me];
  if(next.winner!==null){parts.push('Game shot, and the leg! '+p.name+' wins.');return parts.join('. ');}
- if(next.noticeType==='bust'){parts.push('Bust! '+cap(words(p.score))+' left.');return parts.join('. ');}
+ if(next.noticeType==='bust'){parts.push('Bust! '+leftAdvice(C,p.score,3,next.doubleOut));return parts.join('. ');}
  const thrown=prev.darts.length+1;
- if(thrown>=3){const total=prev.darts.reduce((n,d)=>n+d.score,0)+hit.score;parts.push(totalPhrase(total));parts.push(cap(leftPhrase(C,p.score,3,next.doubleOut))+'.');return parts.join('. ').replace(/([.!])\./g,'$1');}
- const left=3-thrown;if(C.checkouts(p.score,left,next.doubleOut,1).length)parts.push(cap(leftPhrase(C,p.score,left,next.doubleOut)));
- return parts.join('. ');}
-return{words,targetName,dartPhrase,leftPhrase,totalPhrase,forDart};})();
+ if(thrown>=3){const total=prev.darts.reduce((n,d)=>n+d.score,0)+hit.score;parts.push(totalPhrase(total));parts.push(leftAdvice(C,p.score,3,next.doubleOut));return tidy(parts.join('. '));}
+ parts.push(leftAdvice(C,p.score,3-thrown,next.doubleOut));return tidy(parts.join('. '));}
+// Callout for a whole visit entered at once (spoken turn total / "next").
+function forVisit(C,prev,next,total){const me=prev.current,p=next.players[me];
+ if(next.winner!==null)return'Game shot, and the leg! '+p.name+' wins.';
+ if(next.noticeType==='bust')return'Bust! '+leftAdvice(C,p.score,3,next.doubleOut);
+ return tidy(totalPhrase(total)+' '+leftAdvice(C,p.score,3,next.doubleOut));}
+const tidy=s=>s.replace(/([.!])\./g,'$1');
+return{words,targetName,dartPhrase,leftPhrase,totalPhrase,forDart,forVisit,leftAdvice};})();
 if(typeof module!=='undefined')module.exports=OcheCallout;
+</script>
+<script id="advice">
+// ===== What's left + setup advice (pure; used for the spoken callout and the on-screen hint) =====
+// advise(C, score, dartsLeft, doubleOut) -> {kind, target, leave, route, speech, title, detail, alternatives, warn}
+//  kind 'finish' : hit `target` (a double or bull) to win now
+//  kind 'setup'  : hit `target` to leave a preferred double (`leave`) for the next dart / visit
+//  kind 'route'  : 3-dart checkout `route` (no single dart leaves a double)
+//  kind 'score'  : no finish possible; `target` scores and leaves a good number. Never a bust.
+const OcheAdvice=(()=>{
+// Doubles players like to be left on (D20 top, D16, D8, then the rest). Index = how much we like it.
+const PREF=[20,16,8,10,18,12,4,14,6,2,19,17,15,13,11,9,7,5,3,1];
+const isDoubleLeave=n=>n===50||(n>=2&&n<=40&&n%2===0);
+const doubleCode=n=>n===50?'Bull':'D'+n/2;
+function doubleRank(n){return n===50?11.5:PREF.indexOf(n/2);}
+const TYPE_COST={S:0,T:6,25:9,Bull:10,D:12};
+const typeOf=t=>t.code==='25'?'25':t.code==='Bull'?'Bull':t.code[0];
+function setups(C,score){const out=[];for(const t of allTargets(C)){const leave=score-t.score;if(!isDoubleLeave(leave))continue;out.push({target:t,leave,rank:doubleRank(leave)*2+TYPE_COST[typeOf(t)]});}
+ return out.sort((a,b)=>a.rank-b.rank||b.target.score-a.target.score);}
+let ALL=null;function allTargets(C){if(!ALL){ALL=[];for(const r of['S','T','D'])for(let n=20;n>=1;n--)ALL.push(C.target(r+n));ALL.push(C.target('25'),C.target('Bull'));}return ALL;}
+function advise(C,score,dartsLeft=3,doubleOut=true){const O=typeof OcheCallout!=='undefined'?OcheCallout:require('./callout.js');const W=O.words,N=c=>c[0]==='S'?'single '+O.targetName(c):O.targetName(c),cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+ const d=Math.max(1,Math.min(3,dartsLeft|0)),left=cap(W(score))+' left';let a;
+ if(!doubleOut){const r=C.checkouts(score,d,false,1)[0];if(r){a={kind:r.length===1?'finish':'route',target:r[0],leave:score-r[0].score,route:r};a.speech=left+'. '+cap(r.map(t=>N(t.code)).join(', '))+'.';}
+  else{const o=C.setupOptions(score,d,false)[0];a={kind:'score',target:o.target,leave:o.left,route:null};a.speech=left+'.'+(o.left<=180?' '+cap(N(o.target.code))+' leaves '+W(o.left)+'.':'');}
+  a.title=(a.kind==='score'?'Score with ':'Go ')+a.target.code;a.detail=a.route?'Route: '+a.route.map(t=>t.code).join(' → '):'Leaves '+a.leave;a.alternatives=[];a.warn='';return a;}
+ const ups=setups(C,score);
+ if(isDoubleLeave(score)){const t=C.target(doubleCode(score));a={kind:'finish',target:t,leave:0,route:[t]};a.speech=left+'. '+cap(N(t.code))+'.';
+  a.title='Finish on '+(t.code==='Bull'?'the Bull':t.code);
+  const alt=ups.filter(u=>u.target.code[0]==='S'&&u.leave!==score).slice(0,3);a.alternatives=alt.map(u=>({code:u.target.code,leave:u.leave,double:doubleCode(u.leave)}));
+  a.detail=d>1&&alt.length&&doubleRank(score)>5?`Or set up a nicer double: ${alt.map(u=>u.target.code+' → '+doubleCode(u.leave)).join(', ')}`:'One dart for the leg.';}
+ else if(ups.length){const u=ups[0];a={kind:'setup',target:u.target,leave:u.leave,route:[u.target,C.target(doubleCode(u.leave))]};
+  a.speech=left+'. '+cap(N(u.target.code))+', leaves '+N(doubleCode(u.leave))+'.';
+  a.title=`${u.target.code} → leaves ${doubleCode(u.leave)}`;
+  const singles=ups.filter(x=>x.target.code[0]==='S').slice(0,3);a.alternatives=(singles.length?singles:ups.slice(0,3)).map(x=>({code:x.target.code,leave:x.leave,double:doubleCode(x.leave)}));
+  a.detail=(d===1?'No finish with this dart. ':'')+(singles.length?`Try ${list(singles.map(x=>x.target.code.slice(1)))} to leave a double (${singles.map(x=>'S'+x.target.code.slice(1)+' → '+doubleCode(x.leave)).join(', ')}).`:'Set up: '+ups.slice(0,3).map(x=>x.target.code+' → '+doubleCode(x.leave)).join(', ')+'.');}
+ else{const r=C.checkouts(score,d,true,1)[0];
+  if(r){a={kind:'route',target:r[0],leave:score-r[0].score,route:r};a.speech=left+'. '+cap(r.map(t=>N(t.code)).join(', '))+'.';a.title='Finish: '+r.map(t=>t.code).join(' → ');a.detail=`${r.length} darts. First ${r[0].code} leaves ${score-r[0].score}.`;a.alternatives=[];}
+  else{const o=scoring(C,score);a={kind:'score',target:o.target,leave:o.left,route:null};
+   const finishable=C.checkouts(o.left,3,true,1).length>0;a.speech=left+'.'+(o.left<=170?' '+cap(N(o.target.code))+(finishable?', leaves '+W(o.left)+'.':'.'):'');
+   a.title='Score with '+o.target.code;a.detail=score>170?`Over 170: no finish yet. ${o.target.code} leaves ${o.left}${finishable?' (a finish next visit)':''}.`:`No finish with ${d} dart${d===1?'':'s'}. ${o.target.code} leaves ${o.left}${finishable?', a finish for next time':''}.`;a.alternatives=[];}}
+ // bust risk on small numbers
+ a.warn=score===2?'Double 1 only — anything else busts.':score===3?'Single 1 only, then double 1 — anything bigger busts.':score<=8?`Careful: more than ${score-2} busts.`:'';
+ if(score===2)a.speech='Two left. Double one only, anything else busts.';else if(score===3)a.speech='Three left. Single one, leaves double one. Anything bigger busts.';
+ return a;}
+// Scoring shot when no finish/setup is possible: the biggest treble (then single) that leaves a finishable number
+// when we're close (<=230), otherwise just T20. Never leaves less than 2.
+function scoring(C,score){const order=['T20','T19','T18','T17','T16','T15','S20','S19','S18','S17','S16','S15','S14','S13','S12','S11','S10','S9','S8','S7','S6','S5','S4','S3','S2','S1'].map(c=>C.target(c));
+ for(const t of order){const l=score-t.score;if(l<2)continue;if(l<=170&&!C.checkouts(l,3,true,1).length)continue;return{target:t,left:l};}
+ for(const t of order){const l=score-t.score;if(l>=2)return{target:t,left:l};}return{target:C.target('S1'),left:score-1};}
+function list(xs){return xs.length<=1?xs.join(''):xs.slice(0,-1).join(', ')+' or '+xs.at(-1);}
+function aimTitle(a){const c=a.target.code;return(a.kind==='score'?'Build with ':'Aim for ')+(c==='Bull'?'Bullseye':c);}
+return{aimTitle,advise,setups,isDoubleLeave,doubleCode,PREF};})();
+if(typeof module!=='undefined')module.exports=OcheAdvice;
+</script>
+<script id="voicein">
+// ===== Voice scoring: turn what the player shouts into darts (pure parser; the mic UI lives in mobile.js) =====
+// parse(text,{mode}) -> [{type:'dart',code}|{type:'total',score}|{type:'undo'}|{type:'next'}|{type:'unknown',text,why}]
+const OcheVoiceIn=(()=>{
+const UNITS={zero:0,oh:0,nought:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19};
+const TENS={twenty:20,thirty:30,forty:40,fourty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
+// Things speech recognisers commonly write instead of a number. Only trusted right after "treble/double/single",
+// or when it is the whole utterance, so "go to twenty" doesn't become a 2.
+const SOUNDALIKE={won:1,to:2,too:2,tu:2,tree:3,free:3,for:4,fore:4,sex:6,sicks:6,ate:8,eat:8,nein:9,tin:10,tan:10,twin:2,tenth:10,fiver:5,sixer:6,
+ twenny:20,twente:20,tweny:20};
+const TREBLE=new Set(['treble','trebles','triple','triples','tripple','tribble','trouble','trebble','trebel','trible','tremble','treble-','t','tre','three-times','trip','trippel','travel']);
+const DOUBLE=new Set(['double','doubles','dubble','dabble','doubel','dub','d','debbie','w','bubble']);
+const SINGLE=new Set(['single','singles','s','singel','signal','simple','one-time']);
+const MISS=new Set(['miss','missed','misses','mist','nothing','none','nil','zilch','bounce','bounced','bouncer','wire','out','off']);
+const UNDO=new Set(['undo','cancel','oops','back','scratch','delete','remove','wrong','correction']);
+const NEXT=new Set(['next','nextplayer','pass','done','finished','change']);
+const TOTAL=new Set(['scored','score','scoring','total','totals','turn','visit','that\'s','thats','for','makes']);
+const FILLER=new Set(['and','a','an','the','uh','um','er','erm','it','its','it\'s','is','was','i','got','hit','in','on','of','please','that','okay','ok','yeah','yes','just','dart','darts','with','then','me','go','now','points','point','player','that\'s','thats']);
+function normalize(text){let s=' '+String(text||'').toLowerCase().replace(/[’`]/g,"'")+' ';
+ s=s.replace(/bull'?s[\s-]*eye|bullseye|bulls eye|bull's|bulls|bully|bowl|pull|ball/g,' bull ');
+ s=s.replace(/\b(outer|single|green|small|little)\s+bull\b/g,' 25 ').replace(/\bdouble\s+bull\b|\binner\s+bull\b|\bred\s+bull\b/g,' bull ');
+ s=s.replace(/\bdouble\s+tops?\b|\btops\b/g,' double 20 ');s=s.replace(/\bone\s+eighty\b|\bton\s+eighty\b|\bmax(imum)?\b/g,' 180 ');
+ s=s.replace(/\ba\s+hundred\b/g,' one hundred ');s=s.replace(/\bno\s+score\b/g,' noscore ').replace(/\bnext\s+player\b/g,' next ').replace(/\b(take|go)\s+(it\s+)?back\b|\bscratch\s+that\b/g,' undo ');
+ s=s.replace(/\b([tds])\s*-?\s*(\d{1,2})\b/g,(m,r,n)=>' '+({t:'treble',d:'double',s:'single'}[r])+' '+n+' ');// t20, d 16, s-5
+ s=s.replace(/\b(\d{1,2})\s*x\s*3\b/g,' treble $1 ').replace(/(\d)([a-z])/g,'$1 $2').replace(/([a-z])(\d)/g,'$1 $2');
+ s=s.replace(/[^a-z0-9' ]+/g,' ').replace(/-/g,' ');return s.trim().split(/\s+/).filter(Boolean);}
+// Read a number starting at tokens[i]. maxVal caps compounds (after "treble", "twenty five" is T20 then 5).
+function readNumber(tk,i,maxVal=Infinity,loose=false){const w=tk[i];if(w===undefined)return null;
+ if(/^\d+$/.test(w)){const n=+w;if(n>maxVal&&maxVal<=25){/* "treble 205" style run-ons are rare; take the first two digits */return null;}return{n,len:1};}
+ const val=x=>x in UNITS?UNITS[x]:x in TENS?TENS[x]:loose&&x in SOUNDALIKE?SOUNDALIKE[x]:undefined;
+ if(w==='ton'){let n=100,len=1;const r=tk[i+1]==='and'?2:1;const t=readNumber(tk,i+r,99);if(t&&t.n<100&&100+t.n<=maxVal){n+=t.n;len+=r-1+t.len;}return n<=maxVal?{n,len}:null;}
+ let v=val(w);if(v===undefined)return null;let n=v,len=1;
+ if(w in TENS&&tk[i+1]&&tk[i+1] in UNITS&&UNITS[tk[i+1]]>0&&UNITS[tk[i+1]]<10&&n+UNITS[tk[i+1]]<=maxVal){n+=UNITS[tk[i+1]];len++;}
+ if(tk[i+len]==='hundred'&&n<10){n*=100;len++;let j=i+len;if(tk[j]==='and')j++;const t=readNumber(tk,j,99);if(t&&t.n<100){n+=t.n;len=j-i+t.len;}}
+ else if(n>=1&&n<=1&&tk[i+len]&&tk[i+len] in TENS&&maxVal>100){/* "one forty" = 140 */const t=readNumber(tk,i+len,99);if(t){n=100+t.n;len+=t.len;}}
+ return n<=maxVal?{n,len}:null;}
+const scoreOf=code=>code==='Bull'?50:code==='25'?25:code==='M'?0:+code.slice(1)*({S:1,D:2,T:3}[code[0]]);
+// Targets that are the ONLY way to score a value with one dart above 20 (60 -> T20, 57 -> T19, 40 -> D20 ...).
+const UNIQUE=(()=>{const m={};for(const r of['D','T'])for(let n=1;n<=20;n++){const v=n*({D:2,T:3}[r]);(m[v]=m[v]||[]).push(r+n);}return m;})();
+function parse(text,opts={}){const mode=opts.mode==='total'?'total':'dart';const tk=normalize(text);const out=[];if(!tk.length)return out;
+ const whole=tk.length===1;const totalIntent=mode==='total'||tk.some(t=>TOTAL.has(t)&&t!=='for')||/\b(scored|total)\b/.test(tk.join(' '));
+ let ring=null;
+ for(let i=0;i<tk.length;i++){const w=tk[i];
+  if(TREBLE.has(w)){ring='T';continue;}if(DOUBLE.has(w)){ring='D';continue;}if(SINGLE.has(w)){ring='S';continue;}
+  if(w==='bull'){out.push({type:'dart',code:ring==='S'?'25':'Bull'});ring=null;continue;}
+  if(UNDO.has(w)){out.push({type:'undo'});ring=null;continue;}
+  if(NEXT.has(w)){out.push({type:'next'});ring=null;continue;}
+  if(w==='noscore'){out.push(totalIntent?{type:'total',score:0}:{type:'dart',code:'M'});continue;}
+  if(MISS.has(w)&&!(w==='off'||w==='out')||((w==='out'||w==='off')&&whole)){out.push(totalIntent&&mode==='total'?{type:'total',score:0}:{type:'dart',code:'M'});ring=null;continue;}
+  if(ring){if(w==='top'||w==='tops'){out.push({type:'dart',code:ring==='T'?'T20':'D20'});ring=null;continue;}
+   const r=readNumber(tk,i,ring==='S'?25:20,true);if(r){if(r.n>=1&&r.n<=20)out.push({type:'dart',code:ring+r.n});else if(r.n===25)out.push({type:'dart',code:ring==='S'?'25':'Bull'});else out.push({type:'unknown',text,why:'no '+({T:'treble',D:'double',S:'single'}[ring])+' '+r.n});i+=r.len-1;ring=null;continue;}
+   if(FILLER.has(w))continue;out.push({type:'unknown',text,why:'which number?'});ring=null;continue;}
+  const r=readNumber(tk,i,totalIntent?180:Infinity,whole);
+  if(r){i+=r.len-1;const n=r.n;
+   if(totalIntent){if(n<=180)out.push({type:'total',score:n});else out.push({type:'unknown',text,why:n+' is more than 180'});continue;}
+   if(n===0)out.push({type:'dart',code:'M'});else if(n>=1&&n<=20)out.push({type:'dart',code:'S'+n});else if(n===25)out.push({type:'dart',code:'25'});else if(n===50)out.push({type:'dart',code:'Bull'});
+   else if(n>60&&n<=180)out.push({type:'total',score:n,auto:true});// no single dart scores this: it must be a turn total
+   else if(UNIQUE[n]&&UNIQUE[n].length===1)out.push({type:'dart',code:UNIQUE[n][0]});
+   else if(UNIQUE[n])out.push({type:'unknown',text,why:`${n} could be ${UNIQUE[n].join(' or ')} — say “double” or “treble”, or “scored ${n}” for a turn total`});
+   else out.push({type:'unknown',text,why:n<=180?`one dart can't score ${n} — say “scored ${n}” for a turn total`:`${n} is more than 180`});continue;}
+  if(FILLER.has(w)||TOTAL.has(w))continue;
+  out.push({type:'unknown',text,why:'didn’t catch “'+w+'”'});}
+ if(ring&&!out.length)out.push({type:'unknown',text,why:'which number?'});
+ // drop unknowns if we did understand something definite and the unknown is just noise
+ const known=out.filter(o=>o.type!=='unknown');return known.length?known:out.slice(0,1);}
+// Spread a spoken visit total over the darts still to throw. Finishing totals use a real double-out route.
+function visitDarts(C,total,dartsLeft,remaining,doubleOut){if(!(total>=0)||total>dartsLeft*60)return null;
+ if(total===remaining){const r=C.checkouts(total,dartsLeft,doubleOut,1)[0];return r?r.map(t=>t.code):null;}
+ if(total===0)return Array(dartsLeft).fill('M');
+ const T=[];for(let n=20;n>=1;n--)T.push('T'+n);T.push('Bull');for(let n=20;n>=1;n--)T.push('D'+n);T.push('25');for(let n=20;n>=1;n--)T.push('S'+n);
+ const byScore=T.map(c=>[c,scoreOf(c)]);let best=null;
+ (function dfs(left,slots,path){if(best&&path.length>=best.length)return;if(left===0){best=path.slice();return;}if(!slots)return;
+  for(const[c,v]of byScore){if(v<=left&&v>0&&left-v<=(slots-1)*60){path.push(c);dfs(left-v,slots-1,path);path.pop();if(best&&best.length<=path.length+1)return;}}})(total,dartsLeft,[]);
+ if(!best)return null;while(best.length<dartsLeft)best.push('M');return best;}
+return{parse,normalize,readNumber,visitDarts,scoreOf};})();
+if(typeof module!=='undefined')module.exports=OcheVoiceIn;
+</script>
+<script id="banter-js">
+// ===== Commentator: hype, roasts and motivation (pure; friendly, PG-13, never about who someone is) =====
+// Modes: 'off' | 'hype' (hype + motivation only) | 'roast' (hype + motivation + roasts, default) | 'savage' (cheekier roasts)
+const OcheBanter=(()=>{
+const HYPE={
+ oneeighty:['ONE HUNDRED AND EIGHTY! Somebody call the fire brigade!','One eighty! The roof has left the building!','MAXIMUM! {name}, that is illegal in twelve countries!','One eighty! Frame it, laminate it, put it on the fridge!','Three in the bed! Absolute scenes!','MAXIMUM! I need a lie down after that!','One eighty! {name} has gone full laser beam!','That is the perfect visit. Nothing more to say. ONE EIGHTY!','Ohhh yes! Treble twenty, treble twenty, treble twenty, magic!','One hundred and eighty! The board is asking for mercy!','MAXIMUM! Get the trophy engraver on the phone!','One eighty! Somebody check {name} for magnets!','That is a highlight reel visit! ONE EIGHTY!','One eighty! Pure poetry in tungsten!','Maximum! The dartboard just filed a complaint!'],
+ tonforty:['A hundred and forty! Big, big darts!','Ton forty! {name} is cooking with gas!','Ton forty! The board is on fire!','That is a statement visit! A hundred and forty!','Ton forty! Somebody turn the heat down!','Huge visit! {name} means business!','A hundred and forty! Who ordered the fireworks?','Monster score! Ton forty!','Ton forty! That is how you send a message!','Big fish! A hundred and forty!','Wow! {name} is throwing thunderbolts!','Ton forty! The crowd goes wild!','That is top class, {name}! Ton forty!','A hundred and forty! Absolutely flying!','Ton forty! Keep that rhythm!'],
+ ton:['TON! Lovely stuff!','A ton! {name} is warming up!','One hundred! The magic number!','Ton up! Now we are talking!','Century! Take a bow!','A ton! The board felt that one!','Hundred plus! Big arm, {name}!','Ton! That is a proper visit!','There it is! A ton!','Ton up, {name}! Keep it coming!','One hundred! Very tasty!','That is a ton! Smooth as butter!','A ton! The oche is heating up!','Hundred club! Welcome back!','Ton! Somebody is in the zone!'],
+ decentturn:['Solid visit!','Nice and tidy!','Good darts!','That will do nicely!','Steady scoring, {name}!','Keep chipping away!','Useful visit!','Respectable! Now push on!','Good rhythm!','That is the stuff!','Building nicely!','Neat work, {name}!','Good, keep the pressure on!','Tidy!','Scoreboard is moving!'],
+ treble20:['Treble twenty! Lovely!','Bang! Treble top!','Right in the money!','Sixty! Do it again!','Treble twenty! Sweet spot!','Bullseye on the big one! Treble twenty!','Treble twenty, {name}! Gorgeous!','That is the bed you want!','Sixty! Keep feeding it!','Treble twenty! Laser!','Pow! Treble twenty!','There is the red bed! Lovely!','Sixty! The engine is running!','Treble twenty! More of that!','Nailed it!'],
+ bigdart:['Big dart!','Oh, lovely treble!','What a dart!','That is a quality shot!','Beautiful, {name}!','Pinpoint!','Get in!','That is a cracker!','Smooth!','Ooh, tasty dart!','Sharp shooting!','That one had eyes!','Clinical!','Shot!','Lovely bit of darts!'],
+ checkout:['GAME SHOT! {name} takes the leg!','Checkout! Ice in the veins!','Game shot! Cool as you like!','That is how you finish, {name}!','Leg over! Take a bow!','Game shot and the leg! Pure class!','Boom! Checked out!','Clinical finish! Game shot!','The double is gone! Leg to {name}!','Game shot! Nerves of steel!','Finished in style!','Get in there, {name}! Game shot!','That is a winner! Game shot!','Checked out like a pro!','Game shot! Somebody buy {name} a drink!'],
+ bigfinish:['WHAT A CHECKOUT! {name}, that is outrageous!','Big finish! Take a bow, superstar!','That is a ton-plus checkout! Unbelievable!','Monster checkout! Absolute scenes!','Get the cameras! {name} just did THAT!','Huge finish! Legendary!','That is a finish for the history books!','Ton-plus out! Pure magic!','Ohhh! Big checkout! The crowd is on its feet!','That is world class, {name}!','Massive finish! Somebody pinch me!','Highlight of the night! What a checkout!','Big fish landed! Game shot!','That is ridiculous! Brilliant checkout!','Checkout of the season! {name} is on fire!'],
+ comeback:['Comeback is ON! {name} is not done yet!','Here comes {name}! Game on!','The fightback starts now!','Do not write {name} off!','Chasing them down! Keep going!','That is how you close the gap!','The comeback is real!','Pressure is shifting!','Momentum swing! Keep it rolling!','They can hear you coming, {name}!','Big response! The chase is on!','Never give up! Great visit!','That is a statement, {name}! Catch them!','The gap is shrinking!','This is turning into a proper match!']};
+const MOTIVATE={
+ close:['This is YOUR moment, {name}! {double}!','Deep breath. {double}. You have got this!','One dart, one double. Make it count!','Stay calm, {name}. {double} is waiting!','Finish line in sight! {double}!','Ice cold now, {name}. {double}!','This is where legends are made. {double}!','Focus. Aim small. {double}!','Big moment, {name}! Go get {double}!','Trust the arm. {double}!','Smell the finish! {double}!','You were born for this. {double}!','Lock in, {name}! {double}!','The leg is right there! {double}!','Nice and smooth. {double} for glory!']};
+const ROAST={
+ miss:['Missed the whole board! It is the big round thing, {name}!','Did that dart get lost on the way?','That one is still in orbit!','The wall felt that one more than the board.','A miss! Even the board looked away.','Zero! Come on, wake up!','That dart wanted a holiday.','Swing and a miss! Shake it off!','The board is over here, {name}!','Nothing! Did you blink?','That went off the map!','Miss! Let us pretend that never happened.','Air ball! Next dart, please!','The board is not moving, I promise!','That dart has trust issues. Next!'],
+ weakdart:['{n}? Come on, we can do better than that!','A {n}. The trebles are feeling lonely.','{n}! Was that a practice throw?','{n}? Aim for the red bits, {name}!','That is a {n}. The twenty is right next door!','{n}! I have seen better darts in a cracker.','{n}? Wake the arm up!','A {n}? Sharpen up, {name}!','{n}. Let us call that a warm-up.','{n}! The board is laughing.','{n}? Not your finest moment.','A {n}. The big numbers miss you.','{n}! Bring the thunder next time!','{n}? You owe us a treble.','{n}. Shake it off and go again!'],
+ lowturn:['{n} for the visit? Come on, {name}!','{n}! Did you throw with your eyes closed?','{n}. The scoreboard barely noticed.','{n}? We need a bigger number, champ!','{n} points. I have seen more action in a waiting room.','A visit of {n}. Time to wake up!','{n}? Let us pretend that was a warm-up.','{n}! Your darts need a pep talk.','{n}. The board wants a rematch with the real {name}.','{n}? Come on, show us something!','{n} points. Next visit, bring the fire!','{n}! The twenties are waiting for you!','{n}? Even the board is bored.','A {n}. Shake it off and smash the next one!','{n}! Plenty of room for improvement there!'],
+ bust:['Bust! You had one job.','Bust! The maths did not math.','Bust! Too keen, {name}!','Bust! Back to the drawing board.','Bust! That was a lot of enthusiasm.','Bust! The calculator is crying.','Bust! Count before you throw!','Bust! So close, yet so far.','Bust! Nice score, wrong moment!','Bust! The double was right there!','Bust! Let us try that again, shall we?','Bust! The scoreboard says no.','Bust! Easy, tiger!','Bust! That one hurt to watch.','Bust! Patience, {name}, patience!'],
+ misseddouble:['The double was right there, {name}!','Missed the double! The bottle went for a walk.','So close! The double is still waiting.','Ouch! The wire said no.','The double is not going to hit itself!','Nearly! Tighten it up.','Missed it! Breathe and go again.','The double wants you to try harder!','Not quite! Next one goes in.','That double is playing hard to get.','Wobbly! Steady the hand, {name}!','So near! The double laughs at you.','Missed! Come on, finish it!','The finish line moved!','Nerves showing! Shake them off!']};
+const SAVAGE={
+ miss:['Missed the board?! It is literally on the wall, {name}!','That dart just broke up with the board.','I have seen better aim from a sprinkler.','The board called. It wants to know where you went.','Wow. The wall is now your best scorer.','You missed a board the size of a pizza!','That dart was thrown in a different postcode.','Even the dartboard is embarrassed for you.','That throw needs a GPS.','Zero! Are you allergic to points, {name}?','Somewhere a dart is still flying. Unbelievable.','That was not a throw, that was a donation to the wall.','Miss! I am starting a petition.','The board is right there! Did you aim for the TV?','That dart had other plans. Unlike you.'],
+ weakdart:['{n}?! My phone throws better from the table!','A {n}. Absolute tragedy.','{n}! Did you throw it with the wrong hand?','{n}? Even the wire is unimpressed.','{n}. The twenty sends its regards.','A {n}? I want my money back!','{n}! That is a rounding error, not a score.','{n}? Put some respect on that arm!','{n}. Historic. For the wrong reasons.','{n}? I nearly fell asleep, {name}.','A {n}. The board yawned.','{n}?! Are we playing for charity?','{n}. That dart needs counselling.','{n}! You are giving the singles a bad name.','{n}? Bold strategy. Terrible, but bold.'],
+ lowturn:['{n}?! I could score that with a pencil!','A visit of {n}. Call it a crime scene.','{n}. Did you throw from the car park?','{n}? The scoreboard thought it was a typo.','{n} points? That is a postcode, not a score!','{n}! I have seen more fire in a fridge.','{n}. Somebody check if {name} is still awake.','{n}? Absolutely criminal darts.','A visit of {n}. The other players say thank you.','{n}! Was that on purpose? Please say yes.','{n}. A masterclass in what not to do.','{n}?! The board wants a refund.','{n}. That visit should be deleted from history.','{n}? I have seen faster progress from a snail.','{n}! Even the wire is laughing now.'],
+ bust:['Bust! Maths class starts Monday, {name}.','Bust! Calculators are free, you know.','Bust! Legendary levels of overthinking.','Bust! You went for glory and found embarrassment.','Bust! That is a bust and a crisis.','Bust! Somebody take the darts away.','Bust! A spectacular own goal.','Bust! The scoreboard just facepalmed.','Bust! Absolutely beautiful chaos.','Bust! I could not have planned it worse.','Bust! Do you even know what you need?','Bust! Bold. Wrong, but bold.','Bust! Back to square one, genius.','Bust! That was painful for everyone.','Bust! History repeats itself, {name}.'],
+ misseddouble:['Missed the double AGAIN? The double has blocked your number.','The double was the size of a door, {name}!','Bottled it! Spectacularly!','The double is fine. Your nerves are not.','Missed! The double sends a postcard.','Oh dear. The double just laughed.','That is not a finish, that is a cry for help.','Missed! Are you scared of winning, {name}?','The double is still there. Unlike your nerve.','Wow. Missed by a mile.','Choke alert! Choke alert!','The finish is begging you and you said no.','Missed the double! Sell tickets to that.','That double has never been safer.','Missed again! Is this a hobby, {name}?']};
+const HYPE_KEYS=Object.keys(HYPE),ROAST_KEYS=Object.keys(ROAST);
+const KIND={};HYPE_KEYS.forEach(k=>KIND[k]='hype');KIND.close='motivate';ROAST_KEYS.forEach(k=>KIND[k]='roast');
+const MODES=['off','hype','roast','savage'];
+function poolFor(sit,mode){if(mode==='off'||!sit)return null;if(HYPE[sit])return HYPE[sit];if(MOTIVATE[sit])return MOTIVATE[sit];if(ROAST[sit]){if(mode==='hype')return null;return mode==='savage'?SAVAGE[sit].concat(ROAST[sit].slice(0,5)):ROAST[sit];}return null;}
+// What happened? (one situation per dart, most important first). Needs core C and the advice module A.
+function classify(C,A,prev,next,hit){if(!prev||!next)return null;const me=prev.current,p=next.players[me],before=prev.players[me].score,thrown=prev.darts.length+1;
+ const visit=prev.darts.reduce((n,d)=>n+d.score,0)+hit.score;
+ if(next.winner!==null)return visit>=100?'bigfinish':'checkout';
+ const onDouble=next.doubleOut&&A.isDoubleLeave(before);
+ if(next.noticeType==='bust')return onDouble&&hit.score!==before?'misseddouble':'bust';
+ if(thrown>=3){if(visit===180)return'oneeighty';if(visit>=140)return'tonforty';
+  const others=next.players.filter((_,i)=>i!==me).map(x=>x.score),lead=Math.min(...others);
+  if(visit>=60&&prev.turnStart-lead>=100)return'comeback';if(visit>=100)return'ton';}
+ if(onDouble&&hit.code!=='M'&&!hit.double)return'misseddouble';
+ if(hit.code==='M')return thrown>=3&&visit<20?'lowturn':'miss';
+ if(thrown>=3&&visit<20)return'lowturn';
+ if(hit.code==='T20')return'treble20';
+ if(['T19','T18','T17','Bull'].includes(hit.code))return'bigdart';
+ if(hit.score<=5&&p.score>40)return'weakdart';
+ if(p.score>0&&(A.isDoubleLeave(p.score)&&p.score<=40||p.score===50))return'close';
+ if(thrown>=3&&visit>=60)return'decentturn';
+ return null;}
+function create(opts={}){let mode=MODES.includes(opts.mode)?opts.mode:'roast';const rng=opts.rng||Math.random;const last={};let lastLine='';
+ function line(sit,ctx={}){const pool=poolFor(sit,mode);if(!pool)return'';let choices=pool.filter(l=>l!==last[sit]&&l!==lastLine);if(!choices.length)choices=pool;
+  const raw=choices[Math.floor(rng()*choices.length)%choices.length];last[sit]=raw;lastLine=raw;
+  return raw.replace(/\{name\}/g,ctx.name||'player').replace(/\{n\}/g,ctx.n!=null?String(ctx.n):'that').replace(/\{double\}/g,ctx.double||'the double');}
+ return{line,setMode(m){if(MODES.includes(m))mode=m;},mode:()=>mode,kind:s=>KIND[s]||''};}
+return{create,classify,poolFor,MODES,HYPE,MOTIVATE,ROAST,SAVAGE,KIND,SITUATIONS:[...HYPE_KEYS,'close',...ROAST_KEYS]};})();
+if(typeof module!=='undefined')module.exports=OcheBanter;
 </script>
 <script id="app">
 (()=>{'use strict';
 if(/[?&]view=/.test(location.search))return;// the scoreboard phone only runs the viewer (remote.js)
-const C=DartsCore,T=TouchBoard,O=OcheCallout,$=id=>document.getElementById(id),NS='http://www.w3.org/2000/svg';
+const C=DartsCore,T=TouchBoard,O=OcheCallout,A=OcheAdvice,VI=OcheVoiceIn,BT=OcheBanter,$=id=>document.getElementById(id),NS='http://www.w3.org/2000/svg';
 const KEY='the-oche-501-v1',UIKEY='the-oche-touch-v1',SKEY='the-oche-sound-v1';
 let state=null,history=[],suggested=null,setupNames=['',''],saved=true;
-let ui={mode:'board',rings:'big'};try{Object.assign(ui,JSON.parse(localStorage.getItem(UIKEY)||'{}'));}catch(e){}
-if(!T.LAYOUTS[ui.rings])ui.rings='big';if(ui.mode!=='pad')ui.mode='board';
+let ui={mode:'board',rings:'big',voiceMode:'dart',comm:'roast'};try{Object.assign(ui,JSON.parse(localStorage.getItem(UIKEY)||'{}'));}catch(e){}
+if(!T.LAYOUTS[ui.rings])ui.rings='big';if(ui.voiceMode!=='total')ui.voiceMode='dart';if(!BT.MODES.includes(ui.comm))ui.comm='roast';if(ui.mode!=='pad')ui.mode='board';
 const saveUi=()=>{try{localStorage.setItem(UIKEY,JSON.stringify(ui));}catch(e){}};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const node=(tag,attrs)=>{const n=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);return n;};
@@ -266,18 +482,19 @@ const vibrate=p=>{try{navigator.vibrate&&navigator.vibrate(p);}catch(e){}};
 const dn=code=>code==='M'?'Miss':code==='Bull'?'Bull':code;
 
 // ---------- Score caller (Web Speech API) ----------
-const Voice=(()=>{let on=true;try{on=localStorage.getItem(SKEY)!=='off';}catch(e){}let voice=null,unlocked=false,last='';
+const Voice=(()=>{let on=true;try{on=localStorage.getItem(SKEY)!=='off';}catch(e){}let voice=null,unlocked=false,last='',hooks={start(){},end(){}},sid=0;
  const synth=()=>window.speechSynthesis&&window.SpeechSynthesisUtterance?window.speechSynthesis:null;
  function pick(){const s=synth();if(!s)return;const vs=s.getVoices()||[];voice=vs.find(v=>/en-GB/i.test(v.lang)&&/male|uk|daniel|google/i.test(v.name))||vs.find(v=>/en-GB/i.test(v.lang))||vs.find(v=>/^en/i.test(v.lang))||null;}
  if(synth()){pick();try{speechSynthesis.addEventListener('voiceschanged',pick);}catch(e){}}
  function utter(text,vol){const u=new SpeechSynthesisUtterance(text);if(voice)u.voice=voice;u.lang=voice?voice.lang:'en-GB';u.rate=1.08;u.pitch=1;u.volume=vol;return u;}
  // Chrome only lets a page talk after a user gesture: the first tap anywhere speaks a silent word to unlock it.
  function unlock(){if(unlocked||!synth())return;unlocked=true;try{speechSynthesis.speak(utter(' ',0));}catch(e){}}
- function say(text){last=text||'';if(!on||!text)return false;const s=synth();if(!s)return false;try{const busy=s.speaking||s.pending;s.cancel();// drop anything queued so fast taps never lag
-   if(busy)setTimeout(()=>{try{s.speak(utter(text,1));}catch(e){}},40);else s.speak(utter(text,1));return true;}catch(e){return false;}}
+ function say(text){last=text||'';if(!on||!text)return false;const s=synth();if(!s)return false;try{const busy=s.speaking||s.pending;const id=++sid;s.cancel();// drop anything queued so fast taps never lag
+   const u=utter(text,1);const done=()=>{if(id===sid)hooks.end();};u.onend=done;u.onerror=done;hooks.start(text);
+   if(busy)setTimeout(()=>{try{if(id===sid)s.speak(u);}catch(e){done();}},40);else s.speak(u);return true;}catch(e){hooks.end();return false;}}
  function set(v){on=!!v;try{localStorage.setItem(SKEY,on?'on':'off');}catch(e){}if(!on&&synth())try{speechSynthesis.cancel();}catch(e){}show();}
  function show(){const b=$('sound-toggle');b.setAttribute('aria-pressed',String(on));b.textContent=on?'🔊 Sound on':'🔇 Sound off';$('sound-test').disabled=!synth();if(!synth())$('sound-test').textContent='Voice not supported here';}
- return{say,set,show,unlock,on:()=>on,last:()=>last,supported:()=>!!synth()};})();
+ return{say,set,show,unlock,on:()=>on,last:()=>last,supported:()=>!!synth(),hook(h){hooks=h;}};})();
 document.addEventListener('pointerdown',()=>Voice.unlock(),{capture:true,passive:true});
 document.addEventListener('keydown',()=>Voice.unlock(),{capture:true,passive:true});
 
@@ -360,9 +577,24 @@ function updateSetup(){$('player-inputs').innerHTML=setupNames.map((name,i)=>`<d
 function save(){try{localStorage.setItem(KEY,JSON.stringify({state,history}));saved=true;}catch(e){saved=false;}showSave();if(window.OcheRemote)OcheRemote.changed();}
 function showSave(){$('save-status').textContent=saved?'Auto-saved on this browser · Works offline':'Browser storage unavailable/full — keep this tab open.';$('save-status').classList.toggle('saved-warning',!saved);}
 function valid(s){return s&&s.version===1&&Array.isArray(s.players)&&s.players.length>=2&&s.players.length<=12&&s.players.every(p=>typeof p.name==='string'&&Number.isFinite(p.score)&&p.score>=0&&Number.isFinite(p.points)&&Number.isInteger(p.darts)&&p.darts>=0&&Number.isInteger(p.legs))&&Number.isInteger(s.current)&&s.current>=0&&s.current<s.players.length&&Array.isArray(s.darts)&&s.darts.length<=3&&Number.isInteger(s.start)&&s.start>=2&&s.start<=10001&&typeof s.doubleOut==='boolean'&&(s.winner===null||Number.isInteger(s.winner)&&s.winner>=0&&s.winner<s.players.length);}
-function record(hit,point){if(!state||state.winner!==null||!hit)return false;const prev=state;history.push(JSON.parse(JSON.stringify(state)));state=C.throwDart(state,hit,point);save();render();
- const me=prev.current,left=state.players[me].score;const said=O.forDart(C,prev,state,hit);Voice.say(said);vibrate(state.noticeType==='bust'?[40,60,40]:25);
- readout(state.winner!==null?`✓ ${dn(hit.code)} · Game shot!`:state.noticeType==='bust'?`${dn(hit.code)} · ${hit.score} — Bust`:`✓ ${dn(hit.code)} · ${hit.score} · ${left} left`,state.noticeType==='bust'?'warn':'done',true);
+const banter=BT.create({mode:ui.comm});let banTimer=0;
+function showBanter(line,kind){const el=$('banter');clearTimeout(banTimer);if(!line){el.hidden=true;return;}el.hidden=false;el.className='banter '+(kind||'hype');el.textContent=line;banTimer=setTimeout(()=>el.hidden=true,6000);}
+// Score first, then the banter. While voice scoring listens, mid-visit banter is shown but not spoken so the mic is back on fast.
+function commentary(prev,next,hit,visitTotal){const sit=BT.classify(C,A,prev,next,hit);if(!sit)return{line:'',sit:null};const p=next.players[prev.current];
+ const line=banter.line(sit,{name:p.name,n:sit==='lowturn'?visitTotal:hit.score,double:A.isDoubleLeave(p.score)?O.targetName(A.doubleCode(p.score)):'the double'});showBanter(line,BT.KIND[sit]);return{line,sit};}
+function record(hit,point,heard){if(!state||state.winner!==null||!hit)return false;const prev=state;history.push(JSON.parse(JSON.stringify(state)));state=C.throwDart(state,hit,point);save();render();
+ const me=prev.current,left=state.players[me].score,turnOver=state.current!==me||state.winner!==null;const said=O.forDart(C,prev,state,hit);
+ const visit=prev.darts.reduce((n,d)=>n+d.score,0)+hit.score;const cm=commentary(prev,state,hit,visit);
+ Voice.say(cm.line&&(!Mic.on()||turnOver)?said+' '+cm.line:said);vibrate(state.noticeType==='bust'?[40,60,40]:25);
+ const tag=heard?`🎤 “${heard}” → `:'';
+ readout(state.winner!==null?`${tag}✓ ${dn(hit.code)} · Game shot!`:state.noticeType==='bust'?`${tag}${dn(hit.code)} · ${hit.score} — Bust`:`${tag}✓ ${dn(hit.code)} · ${hit.score} · ${left} left`,state.noticeType==='bust'?'warn':'done',true);
+ $('live').textContent=said+(cm.line?' '+cm.line:'');if(state.winner!==null)celebrate();return true;}
+// Several darts as ONE undo step (a spoken turn total, or "next" = the rest of the visit missed).
+function recordVisit(codes,heard,label){if(!state||state.winner!==null||!codes.length)return false;const prev=state,me=prev.current;history.push(JSON.parse(JSON.stringify(state)));let s=state,lastHit=null,before=s;
+ for(const c of codes){const hit=C.target(c);before=s;s=C.throwDart(s,hit,T.center(c,ui.rings));lastHit=hit;if(s.current!==me||s.winner!==null)break;}
+ state=s;save();render();const total=prev.darts.reduce((n,d)=>n+d.score,0)+codes.reduce((n,c)=>n+C.target(c).score,0);
+ const said=O.forVisit(C,prev,state,total);const cm=commentary(before,state,lastHit,total);Voice.say(cm.line?said+' '+cm.line:said);vibrate(25);
+ readout(`🎤 “${heard}” → ${label||total} · ${state.winner!==null?'Game shot!':state.noticeType==='bust'?'Bust':state.players[me].score+' left'}`,state.noticeType==='bust'?'warn':'done',true);
  $('live').textContent=said;if(state.winner!==null)celebrate();return true;}
 const enter=(hit,point)=>record(hit,point);
 function undo(){if(!history.length)return false;state=history.pop();$('confetti').replaceChildren();save();render();const p=state.players[state.current];const t=`Undone. ${p.name}, ${p.score} left.`;readout('↶ Last dart undone · '+p.name+' '+p.score+' left','done');Voice.say(`Undo. ${p.name}, ${O.words(p.score)} left.`);$('live').textContent=t;return true;}
@@ -370,6 +602,7 @@ function targetPoint(code){return T.center(code,ui.rings);}
 window.OcheApp={record:(h,p)=>record(h,p),enter:(h,p)=>enter(h,p),targetPoint,undo,getState:()=>state,markers:()=>{if(state)markers();},voice:Voice,ui:()=>({...ui}),_guard:guard};
 const routeHTML=r=>r.map(t=>t.code==='Bull'?'Bull':t.code).join(' → ');
 function renderHints(){const p=state.players[state.current],left=3-state.darts.length;$('hint-card').hidden=state.winner!==null;$('aim-strip').hidden=state.winner!==null;if(state.winner!==null){suggested=null;highlight();return;}
+ const adv=A.advise(C,p.score,left,state.doubleOut);
  const routes=C.checkouts(p.score,left,state.doubleOut);
  if(routes.length){suggested=routes[0][0].code;$('aim-name').textContent='Aim for '+(suggested==='Bull'?'Bullseye':suggested);const r=routes[0],first=r[0];$('aim-short').textContent=dn(suggested);$('aim-route').textContent='Finish: '+routeHTML(r);
   $('aim-detail').textContent=r.length===1?'For the leg. You’re one accurate dart away.':`${first.score} points leaves ${p.score-first.score} · ${left} darts available`;$('routes-heading').textContent='Finish options · '+p.score+' to go';
@@ -379,6 +612,10 @@ function renderHints(){const p=state.players[state.current],left=3-state.darts.l
   $('aim-detail').textContent=`No finish in ${left} dart${left===1?'':'s'}. Set yourself up for the next visit.`;$('routes-heading').textContent='Easy points & good leaves';
   $('routes').innerHTML=options.map(o=>{const finish=C.target(o.left===50?'Bull':'D'+o.left/2);const double=state.doubleOut&&finish&&finish.double&&finish.score===o.left;return`<li><span class="route">${o.target.code} → ${o.left} left</span><small>${o.target.code[0]==='S'?'Big single · ':o.target.code[0]==='T'?'Higher scoring · ':''}${double?'Leaves '+finish.code+' for a future dart':o.left<=170&&C.checkouts(o.left,3,state.doubleOut,1).length?'Leaves a finish for your next visit':'Keep bringing the score down'}</small></li>`;}).join('');
   $('hint-note').textContent='Big singles are the easiest targets. Prefer leaves of 32 (D16), 40 (D20), 36 (D18) or 16 (D8).';}
+ // the advice (same as the voice) drives the aim strip, the highlighted segment and the headline
+ suggested=adv.target.code;$('aim-name').textContent=A.aimTitle(adv);$('aim-short').textContent=dn(adv.target.code);
+ $('aim-route').textContent=adv.kind==='finish'?'for the leg':adv.kind==='setup'?'leaves '+A.doubleCode(adv.leave)+(adv.alternatives.length>1?' · or '+adv.alternatives.filter(x=>x.code!==adv.target.code).slice(0,2).map(x=>x.code).join(', '):''):adv.kind==='route'?'Finish: '+routeHTML(adv.route):'leaves '+adv.leave;
+ $('advice-title').textContent=p.score+' left: '+adv.title;$('advice-detail').textContent=adv.detail;$('advice-warn').hidden=!adv.warn;$('advice-warn').textContent=adv.warn?'⚠ '+adv.warn:'';
  highlight();}
 function render(){if(!state)return;$('setup').hidden=true;$('game').hidden=false;$('edit-game').hidden=false;const p=state.players[state.current],won=state.winner!==null;
  $('leg-label').textContent=`At the oche · Leg ${state.leg} · ${state.start} ${state.doubleOut?'double out':'straight out'}`;$('active-name').textContent=p.name;$('remaining').textContent=p.score;{const l=3-state.darts.length;$('darts-left').textContent=l+(l===1?' dart left':' darts left');}
@@ -400,7 +637,48 @@ $('new-leg').onclick=()=>{state=C.newLeg(state);history=[];save();render();reado
 $('edit-game').onclick=()=>{if(!confirm('Start a new match? This clears the current match and leg tallies.'))return;setupNames=state.players.map(p=>p.name);$('start-score').value=state.start;$('double-out').checked=state.doubleOut;state=null;history=[];save();$('game').hidden=true;$('edit-game').hidden=true;$('setup').hidden=false;updateSetup();};
 $('sound-toggle').onclick=()=>{Voice.set(!Voice.on());if(Voice.on())Voice.say('Sound on.');};
 $('sound-test').onclick=()=>{if(!Voice.on())Voice.set(true);Voice.say('Treble twenty, sixty. One hundred and eighty!');};
-buildBoard();applyUi();updateSetup();renderPad();Voice.show();
+// ---------- Voice scoring (speech recognition) ----------
+const Mic=(()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let rec=null,on=false,paused=false,running=false,restartT=0,resumeT=0,errs=0,wake=null;
+ const btn=$('voice-toggle'),note=$('voice-note');
+ const lang=()=>{const l=(navigator.language||'').toLowerCase();return /^en-(gb|us|au|in|ie|nz|za|ca)$/.test(l)?navigator.language:'en-GB';};
+ function msg(text,warn){note.textContent=text;note.classList.toggle('warn',!!warn);}
+ function show(){if(!SR){btn.disabled=true;btn.textContent='🎤 Voice scoring not available here';msg('This browser has no speech recognition. Use Chrome on Android, or tap the board.',true);return;}
+  btn.setAttribute('aria-pressed',String(on));btn.classList.toggle('paused',on&&paused);btn.textContent=!on?'🎤 Voice scoring':paused?'🔈 Speaking… (mic paused)':'🎤 Listening — tap to stop';}
+ function make(){const r=new SR();r.continuous=true;r.interimResults=false;r.maxAlternatives=3;r.lang=lang();
+  r.onstart=()=>{running=true;show();};
+  r.onresult=e=>{if(paused)return;for(let i=e.resultIndex;i<e.results.length;i++){const res=e.results[i];if(res.isFinal===false)continue;const alts=[];for(let k=0;k<res.length;k++)alts.push(String(res[k].transcript||'').trim());heard(alts.filter(Boolean));}};
+  r.onerror=e=>{const t=e&&e.error;if(t==='not-allowed'||t==='service-not-allowed'){on=false;msg('Microphone blocked. Allow the microphone for this site (Chrome ⋮ → Settings → Site settings → Microphone), then tap Voice scoring again.',true);}
+   else if(t==='audio-capture'){on=false;msg('No microphone found on this device.',true);}else if(t==='network'){errs++;msg('Voice scoring needs internet. Reconnecting…',true);}else if(t!=='no-speech'&&t!=='aborted')errs++;show();};
+  r.onend=()=>{running=false;if(on&&!paused)schedule(errs?Math.min(4000,500*errs):200);show();};return r;}
+ function start(){if(!on||paused||running)return;try{rec=rec||make();rec.start();running=true;}catch(e){running=false;schedule(700);}}
+ function stop(){clearTimeout(restartT);try{if(rec&&running)rec.abort();}catch(e){}running=false;}
+ function schedule(ms){clearTimeout(restartT);restartT=setTimeout(start,ms);}
+ async function lock(){try{if(navigator.wakeLock&&!wake)wake=await navigator.wakeLock.request('screen');}catch(e){}}
+ function toggle(){if(!SR)return;on=!on;if(on){paused=false;errs=0;msg('Listening. Shout each dart: “treble twenty”, “double sixteen”, “bull”, “miss”, “undo”, “next”, or “scored sixty”. Needs internet.');start();lock();}else{stop();clearTimeout(resumeT);paused=false;try{wake&&wake.release();}catch(e){}wake=null;msg('Voice scoring is off. Tap it and allow the microphone.');}show();}
+ // Don't listen to ourselves: pause while the app is talking, resume the moment it stops (safety timer if onend never fires).
+ Voice.hook({start(text){if(!on)return;paused=true;stop();clearTimeout(resumeT);resumeT=setTimeout(resume,900+String(text).length*75);show();},end(){if(!on)return;clearTimeout(resumeT);resumeT=setTimeout(resume,150);}});
+ function resume(){if(!on)return;paused=false;start();show();}
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&on){wake=null;lock();if(!running&&!paused)start();}});
+ btn.addEventListener('click',toggle);show();
+ return{on:()=>on,paused:()=>paused,_rec:()=>rec,_heard:alts=>heard(alts),toggle};})();
+function heard(alts){if(!alts.length)return;let pick=null,cmds=null;for(const a of alts){const c=VI.parse(a,{mode:ui.voiceMode});if(c.length&&c.every(x=>x.type!=='unknown')){pick=a;cmds=c;break;}}
+ if(!cmds){pick=alts[0];cmds=VI.parse(pick,{mode:ui.voiceMode});}
+ if(!cmds.length)return;if(!state){readout(`🎤 “${pick}” — start a match first`,'warn');return;}
+ for(const c of cmds){if(c.type==='unknown'){readout(`🎤 “${pick}” — ${c.why}`,'warn');Voice.say('Say again.');return;}
+  if(c.type==='undo'){if(!undo())readout('🎤 Nothing to undo','warn');continue;}
+  if(state.winner!==null){readout('🎤 Leg over — tap “Play another leg”','warn');return;}
+  if(c.type==='dart'){record(C.target(c.code),T.center(c.code,ui.rings),pick);continue;}
+  const p=state.players[state.current],thrown=state.darts.reduce((n,d)=>n+d.score,0),dl=3-state.darts.length;
+  if(c.type==='next'){recordVisit(Array(dl).fill('M'),pick,'rest missed');return;}
+  if(c.type==='total'){const rest=c.score-thrown;if(rest<0){readout(`🎤 “${pick}” — this turn already has ${thrown}`,'warn');Voice.say('Say again.');return;}
+   const codes=VI.visitDarts(C,rest,dl,p.score,state.doubleOut);if(!codes){readout(`🎤 “${pick}” — can't score ${rest} with ${dl} dart${dl===1?'':'s'}`,'warn');Voice.say('Say again.');return;}
+   recordVisit(codes,pick,c.score+' scored');return;}}}
+window.OcheApp.mic=Mic;window.OcheApp.heard=a=>heard(a);window.OcheApp.banter=banter;
+function applyVoiceMode(){$('voice-dart').setAttribute('aria-pressed',String(ui.voiceMode==='dart'));$('voice-total').setAttribute('aria-pressed',String(ui.voiceMode==='total'));}
+onTap($('voice-dart'),()=>{ui.voiceMode='dart';saveUi();applyVoiceMode();});onTap($('voice-total'),()=>{ui.voiceMode='total';saveUi();applyVoiceMode();});
+function applyComm(){$('comm-mode').querySelectorAll('[data-comm]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.comm===ui.comm)));banter.setMode(ui.comm);if(ui.comm==='off')showBanter('');}
+$('comm-mode').querySelectorAll('[data-comm]').forEach(b=>onTap(b,()=>{ui.comm=b.dataset.comm;saveUi();applyComm();}));
+buildBoard();applyUi();updateSetup();renderPad();Voice.show();applyVoiceMode();applyComm();
 try{const stored=localStorage.getItem(KEY);if(stored){const data=JSON.parse(stored);if(valid(data.state)){state=data.state;history=Array.isArray(data.history)?data.history.filter(valid):[];render();readout(idleText(),'');}}}catch(e){saved=false;}showSave();
 })();
 </script>
@@ -445,7 +723,8 @@ const ACTS=['confirm','reject','hold','release','fix','add','undo'];
 function decodeAction(m){if(!m||m.type!=='action'||m.v!==1||!ACTS.includes(m.act)||!int(m.seq))return null;const out={act:m.act,seq:m.seq};if(m.id!==undefined){if(!int(m.id))return null;out.id=m.id;}if(m.code!==undefined){const c=str(m.code,8);if(!/^(M|25|Bull|[SDT]([1-9]|1\d|20))$/.test(c))return null;out.code=c;}if((m.act==='fix'||m.act==='add')&&!out.code)return null;if(['confirm','reject','hold','release','fix'].includes(m.act)&&out.id===undefined)return null;return out;}
 const dn=c=>c==='M'?'Miss':c==='Bull'?'Bull':c;
 // Coaching text for the player at the oche (same logic as the main screen's “Your next dart”).
-function hints(C,state){if(!state||state.winner!==null)return null;const p=state.players[state.current],left=3-state.darts.length;const routes=C.checkouts(p.score,left,state.doubleOut);
+function hints(C,state){const h=hints0(C,state);const A=typeof OcheAdvice!=='undefined'?OcheAdvice:null;if(h&&A){const p=state.players[state.current],adv=A.advise(C,p.score,3-state.darts.length,state.doubleOut);h.aim=adv.target.code;h.title=A.aimTitle(adv);h.detail=adv.title+(adv.detail?' · '+adv.detail:'')+(adv.warn?' · '+adv.warn:'');}return h;}
+function hints0(C,state){if(!state||state.winner!==null)return null;const p=state.players[state.current],left=3-state.darts.length;const routes=C.checkouts(p.score,left,state.doubleOut);
  if(routes.length){const r=routes[0],first=r[0],aim=first.code;return{finish:true,aim,title:'Aim for '+(aim==='Bull'?'Bullseye':aim),detail:r.length===1?'For the leg. One accurate dart away.':`${first.score} leaves ${p.score-first.score} · ${left} dart${left===1?'':'s'} left`,heading:'Finish options · '+p.score+' to go',
   items:routes.slice(0,4).map((rt,i)=>({route:rt.map(t=>dn(t.code)).join(' → '),note:(i===0?'Recommended · ':'')+rt.length+' dart'+(rt.length===1?'':'s')+' · '+(state.doubleOut?'finish on '+(rt.at(-1).code==='Bull'?'Bull (double 25)':rt.at(-1).code):'straight-out finish')}))};}
  const opts=C.setupOptions(p.score,left,state.doubleOut),aim=opts[0]?opts[0].target.code:null;
