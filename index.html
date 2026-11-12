@@ -24,44 +24,64 @@ label{display:block;color:var(--muted);font-size:14px}
 h1,h2,h3,p{margin-top:0}h1{font-size:clamp(28px,7vw,46px);letter-spacing:-1.5px;line-height:1.1;margin-bottom:12px}h2{font-size:20px;letter-spacing:-.4px;margin-bottom:8px}
 .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:2px;font-weight:750;color:var(--lime)}
 .muted{color:var(--muted)}.tiny{font-size:12px}
-.wrap{max-width:1360px;margin:auto;padding:6px max(6px,env(safe-area-inset-right)) 24px max(6px,env(safe-area-inset-left))}
-header{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:2px 2px 6px;border-bottom:1px solid var(--line);margin-bottom:8px}
 .brand{font-size:16px;letter-spacing:2px;font-weight:850;display:flex;align-items:center;gap:8px}.brand .eyebrow{letter-spacing:1px}
 .brand-mark{display:grid;place-items:center;width:30px;height:30px;border:1px solid var(--lime);color:var(--lime);border-radius:50%;font-size:20px}
 .header-meta{display:flex;align-items:center;gap:8px}
 .pill{border:1px solid var(--line);padding:4px 10px;border-radius:50px;font-size:11px;text-transform:uppercase;letter-spacing:1px}
 .card{border:1px solid var(--line);background:linear-gradient(135deg,#1c3027,#12251f);border-radius:16px;padding:16px}
-.setup{max-width:640px;margin:20px auto}.setup-card{margin-top:18px}
-.player-input{display:flex;align-items:center;gap:8px;margin-bottom:10px}.player-input span{width:22px;color:var(--muted);font-size:13px}.player-input input{flex:1;min-width:0}.player-input button{width:48px;padding:0}
+.player-input{display:flex;align-items:center;gap:8px;margin-bottom:10px}.player-input span{width:22px;color:var(--muted);font-size:14px}.player-input input{flex:1;min-width:0}.player-input button{width:48px;padding:0}
 .settings{display:grid;grid-template-columns:1fr 1fr;gap:16px;border-top:1px solid var(--line);padding-top:16px;margin-top:16px;align-items:center}
 .check{display:flex;gap:10px;align-items:center;color:var(--cream);min-height:44px}.check input{width:24px;height:24px;min-height:0;accent-color:var(--lime)}
 .sound-row{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:14px;margin-top:16px}
 .wide{width:100%;margin-top:18px;padding:16px;font-size:18px}.rule-text{font-size:12px;color:var(--muted);margin:12px 0 0}.error{color:#ffc6ac;font-size:13px}
-.game-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}
-.notice{background:#203a2d;border:1px solid #5c784d;border-radius:12px;padding:10px 14px;margin-bottom:10px;font-size:14px}.notice.bust{background:#482c28;border-color:#885448}
-.game-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;align-items:start}
-/* Player card */
-.active-card{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;padding:12px 14px}
-.ac-name h2{margin:0;font-size:20px;overflow-wrap:anywhere;line-height:1.15}.ac-name .eyebrow{font-size:10px}
-.remaining-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.4px;margin-top:6px}
-.remaining{font-size:62px;font-weight:850;letter-spacing:-3px;line-height:1;font-variant-numeric:tabular-nums}
-.ac-side{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
-.dart-slots{display:flex;gap:5px}.dart-slot{display:flex;flex-direction:column;justify-content:center;align-items:center;width:52px;height:52px;border:1px dashed #42604c;border-radius:10px;color:#a9bdb2;font-size:11px;line-height:1.15}
-.dart-slot.filled{border-style:solid;background:#243d30;color:var(--cream)}.dart-slot strong{font-size:16px}
-.turn-total{font-size:12px;color:var(--muted);text-align:right}.turn-total strong{font-size:18px;color:var(--cream)}
-.win-card{text-align:center;border-color:#acba69;padding:24px 16px;background:radial-gradient(ellipse at top,#44522b,#182b20)}.trophy{font-size:38px}.win-card h2{font-size:28px;margin:8px 0}.info-note{font-size:12px;color:var(--muted);margin:12px 0 0}
-.aim-strip{display:flex;align-items:baseline;gap:8px;padding:6px 12px;border:1px solid #62723e;border-radius:12px;background:#203020;font-size:14px;overflow:hidden;white-space:nowrap}
-.aim-k{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--lime)}#aim-short{font-size:20px;color:var(--lime)}.aim-route{color:var(--muted);overflow:hidden;text-overflow:ellipsis}
-/* Entry */
-.input-card{border:1px solid var(--line);border-radius:18px;background:radial-gradient(ellipse,#223c2e,#101f19 70%);padding:8px 6px 12px}
-.input-top{display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap;padding:0 4px}
-.seg{display:inline-flex;border:1px solid var(--line);border-radius:12px;overflow:hidden}.seg button{border:0;border-radius:0;background:transparent;padding:8px 12px;font-size:14px}.seg button[aria-pressed="true"]{background:var(--lime);color:#172219}
-.seg-small button{font-size:12px;padding:6px 10px}
-.readout{display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;margin:8px 4px 4px;padding:4px 10px;border-radius:12px;background:#0e1c17;border:1px solid var(--line);font-size:15px;text-align:center}
-.readout.pressing{border-color:var(--gold);color:var(--gold);font-weight:800;font-size:18px}.readout.done{border-color:var(--lime);color:var(--lime);font-weight:800;font-size:18px}.readout.warn{border-color:#b6493f;color:#ffc6ac}
-.readout-undo{min-height:44px;padding:6px 14px;font-size:15px;background:#3a2a26;border-color:#885448;color:var(--cream)}
-.board-wrap{position:relative;width:min(100%,max(300px,calc(100svh - 300px)));margin:4px auto 0;aspect-ratio:1}
+
+/* ===== App shell: one screen, no scrolling to play ===== */
+:root{--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);--sal:env(safe-area-inset-left,0px);--sar:env(safe-area-inset-right,0px);--gap:6px;--hdr:50px}
+html,body{overflow-x:hidden}body{min-height:100vh;min-height:100dvh}
+.wrap{max-width:1360px;margin:auto;padding:calc(4px + var(--sat)) calc(6px + var(--sar)) calc(6px + var(--sab)) calc(6px + var(--sal))}
+header{display:flex;justify-content:space-between;align-items:center;gap:8px;height:var(--hdr);padding:0 2px;border-bottom:1px solid var(--line);margin-bottom:var(--gap)}
+.brand{min-width:0;flex:1;font-size:16px;letter-spacing:2px;font-weight:850;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.brand-name{flex:none}.hdr-leg{display:none;min-width:0;overflow:hidden;text-overflow:ellipsis;font-size:14px;letter-spacing:.3px;font-weight:700;color:var(--muted)}
+.in-game .hdr-leg{display:block}.in-game .brand-501{display:none}
+@media(max-width:520px){.in-game .brand-name{display:none}}
+.header-meta{display:flex;align-items:center;gap:8px;flex:none}header .chip{white-space:nowrap;padding:6px 14px;font-size:15px}
+.setup{max-width:640px;margin:16px auto}
+.game-layout{display:block}
+.play{display:flex;flex-direction:column;gap:var(--gap);height:calc(100vh - var(--hdr) - var(--gap) - 4px - var(--sat) - var(--sab) - 6px);height:calc(100dvh - var(--hdr) - var(--gap) - 4px - var(--sat) - var(--sab) - 6px);min-height:300px}
+.play>*{flex:none}
+/* Player card: one compact row */
+.active-card{display:flex;align-items:center;gap:8px;padding:6px 8px 6px 12px;border-radius:14px}
+.ac-who{flex:1;min-width:0}
+#active-name{margin:0;font-size:19px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.turn-total{font-size:14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.turn-total strong{font-size:16px;color:var(--cream)}
+.remaining{font-size:46px;font-weight:850;letter-spacing:-2px;line-height:1;font-variant-numeric:tabular-nums;flex:none}
+#dart-slots{display:flex;gap:4px;flex:none}
+#dart-slots .dart-slot{display:flex;flex-direction:column;justify-content:center;align-items:center;width:42px;height:46px;border:1px dashed #42604c;border-radius:10px;color:var(--muted);font-size:14px;line-height:1.1}
+#dart-slots .dart-slot.filled{border-style:solid;background:#243d30;color:var(--cream)}#dart-slots .dart-slot strong{font-size:15px}#dart-slots .slot-n{color:#5d7a68;font-size:15px}
+.dart-slot{display:flex;flex-direction:column;justify-content:center;align-items:center;border:1px dashed #42604c;border-radius:10px;color:#a9bdb2;font-size:14px;line-height:1.15}.dart-slot.filled{border-style:solid;background:#243d30;color:var(--cream)}
+.win-card{text-align:center;border-color:#acba69;padding:10px 12px;background:radial-gradient(ellipse at top,#44522b,#182b20)}.trophy{font-size:26px;line-height:1}.win-card h2{font-size:24px;margin:4px 0}.win-card p{margin-bottom:8px;font-size:14px}.info-note{font-size:14px;color:var(--muted);margin:8px 0 0}
+.aim-strip{display:flex;align-items:baseline;gap:8px;padding:4px 12px;min-height:34px;border:1px solid #62723e;border-radius:12px;background:#203020;font-size:15px;overflow:hidden;white-space:nowrap}
+.aim-k{font-size:14px;text-transform:uppercase;letter-spacing:1px;color:var(--lime);flex:none}#aim-short{font-size:19px;color:var(--lime);flex:none}.aim-route{color:var(--muted);overflow:hidden;text-overflow:ellipsis;min-width:0}
+.readout{display:flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:2px 4px 2px 10px;border-radius:12px;background:#0e1c17;border:1px solid var(--line);font-size:15px;line-height:1.2;text-align:center;overflow:hidden}
+#readout-text{min-width:0;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.readout.pressing{border-color:var(--gold);color:var(--gold);font-weight:800;font-size:17px}.readout.done{border-color:var(--lime);color:var(--lime);font-weight:800;font-size:17px}.readout.warn{border-color:#b6493f;color:#ffc6ac;font-size:14px}
+.readout-undo{flex:none;min-height:44px;padding:4px 12px;font-size:15px;background:#3a2a26;border-color:#885448;color:var(--cream)}
+/* Stage: the board fills whatever height is left, as a square = min(width, height) */
+.stage{position:relative;flex:1 1 auto!important;min-height:0;container-type:size;display:grid;place-items:center;border-radius:18px;background:radial-gradient(circle closest-side,#223c2e,#101f19 96%,transparent 100%)}
+.board-wrap{position:relative;width:min(100cqw,100cqh);height:min(100cqw,100cqh);margin:0}
 #board{display:block;width:100%;height:100%;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.stage .notice{position:absolute;left:6px;right:6px;top:4px;z-index:4;pointer-events:none;transition:opacity .15s}.stage.pressing .notice{opacity:0}
+.aim-slot{position:relative}.aim-strip{height:40px}
+.aim-slot .banter{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.aim-slot .banter{-webkit-line-clamp:2}.aim-slot:has(#aim-strip[hidden]) .banter{position:static;min-height:40px}
+.notice{background:#203a2de6;border:1px solid #5c784d;border-radius:12px;padding:6px 12px;font-size:14px;text-align:center}.notice.bust{background:#482c28ee;border-color:#885448}
+.action-row{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:8px}
+.action-row button{min-height:54px;font-size:17px;padding:4px 6px;line-height:1.15;white-space:normal}.miss-btn{background:#23302a}.undo-btn{background:transparent;border-style:dashed}
+.voice-btn{border-radius:12px;background:#1f3340}
+.voice-btn[aria-pressed="true"]{background:#7a1f1f;border-color:#ff6b5b;color:#fff;animation:pulse 1.6s ease-in-out infinite}
+.voice-btn.paused{animation:none;opacity:.8}.voice-btn:disabled{font-size:14px}
+@keyframes pulse{50%{box-shadow:0 0 0 6px #ff6b5b33}}
+/* Board */
 .segment{stroke:#00000066;stroke-width:1}.segment.aim{stroke:var(--lime);stroke-width:4}.segment.press{fill:#ffd54a!important;stroke:#fff;stroke-width:3}
 #board.done-flash .segment.flash{fill:var(--lime)!important}
 .wire{fill:none;stroke:#cfd2bd;stroke-width:1.2;pointer-events:none;opacity:.65}
@@ -69,66 +89,94 @@ header{display:flex;justify-content:space-between;align-items:center;gap:8px;pad
 .marker{pointer-events:none}
 .bubble{position:absolute;pointer-events:none;transform:translate(-50%,-100%);background:#fff7d6;color:#14211a;border:3px solid #ffd54a;border-radius:16px;padding:6px 14px;text-align:center;box-shadow:0 8px 24px #000a;z-index:5;min-width:84px}
 .bubble strong{display:block;font-size:30px;line-height:1.05}.bubble span{font-size:14px;font-weight:700}.bubble.out{background:#482c28;color:#ffd9cc;border-color:#b6493f}.bubble.out strong{font-size:18px}
-.pad{padding:4px}.pad-step{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin:8px 4px 6px}
-.pad-nums{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.pad-nums button{min-height:54px;font-size:22px;padding:0}.pad-nums button[aria-pressed="true"]{background:var(--gold);color:#1a1a10;border-color:var(--gold)}
-.pad-rings{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.pad-rings button{min-height:64px;font-size:16px;padding:4px;line-height:1.15}
+/* Number pad: fills the stage */
+.pad{width:100%;height:100%;display:flex;flex-direction:column;gap:5px;padding:2px;overflow:auto}
+.pad-step{flex:none;font-size:14px;color:var(--muted);margin:0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pad-nums{flex:4 1 0;min-height:196px;display:grid;grid-template-columns:repeat(5,1fr);grid-auto-rows:1fr;gap:5px}.pad-nums button{min-height:44px;font-size:21px;padding:0}.pad-nums button[aria-pressed="true"]{background:var(--gold);color:#1a1a10;border-color:var(--gold)}
+.pad-rings{flex:1.2 1 0;min-height:50px;display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.pad-rings button{min-height:44px;font-size:16px;padding:2px}
 #pad-D:not(:disabled){background:#5b2622;border-color:#b6493f}#pad-T:not(:disabled){background:#1f4a39;border-color:#3f9a75}
-.pad-specials{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}.pad-specials button{min-height:54px}
-.action-row{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:14px 4px 0}
-.action-row button{min-height:56px;font-size:17px}.miss-btn{background:#23302a}.undo-btn{background:transparent;border-style:dashed}
-.board-note{font-size:12px;color:var(--muted);margin:10px 6px 0;text-align:center}
-/* Hints + scoreboard */
-.hint{border-color:#62723e;background:linear-gradient(135deg,#293b25,#17291f)}.hint-title{color:var(--lime);font-size:12px;text-transform:uppercase;letter-spacing:1.4px}
-.aim-name{font-size:26px;font-weight:800;letter-spacing:-.5px;margin:6px 0 2px}.subline{font-size:13px;margin-bottom:0}.routes-heading{font-size:12px;font-weight:700;margin-top:14px}
-.route-list{padding:0;margin:8px 0 0;list-style:none}.route-list li{padding:8px 0;border-bottom:1px solid #ffffff12;font-size:15px}.route-list li:last-child{border:0}.route-list .route{font-weight:700}.route-list small{display:block;color:var(--muted);font-size:12px}
-.scoreboard{padding:0;overflow:hidden}.scoreboard-heading{padding:14px 14px 6px;display:flex;align-items:center;justify-content:space-between;gap:10px}.scoreboard h2{font-size:17px;margin:0}
-.table-scroll{overflow:auto}table{border-collapse:collapse;width:100%;text-align:right;font-variant-numeric:tabular-nums;font-size:14px;white-space:nowrap}
-th{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:500}td,th{padding:10px 10px;border-bottom:1px solid var(--line)}tr:last-child td{border-bottom:0}
-td:first-child,th:first-child{text-align:left}td:first-child{font-weight:700;white-space:normal;overflow-wrap:anywhere;min-width:90px}tr.active{background:#d8f2790b}tr.active td:first-child{color:var(--lime)}td.score{font-size:22px;font-weight:750}
+.pad-specials{flex:1 1 0;min-height:46px;display:grid;grid-template-columns:1fr 1fr;gap:5px}.pad-specials button{min-height:44px;padding:2px}
+@media(max-height:660px){.pad-step{display:none}}
+/* Below the fold: collapsible advice + scoreboard */
+.below{display:flex;flex-direction:column;gap:var(--gap);padding-top:var(--gap)}
+.fold{flex:none;border:1px solid var(--line);border-radius:16px;background:#12231d;overflow:hidden}
+.fold>summary{list-style:none;cursor:pointer;min-height:48px;display:flex;align-items:center;gap:6px;padding:8px 14px;font-weight:750;font-size:16px;color:var(--lime)}.fold>summary::-webkit-details-marker{display:none}
+.fold>summary::after{content:'▾';margin-left:auto;color:var(--muted);transition:transform .15s}.fold:not([open])>summary::after{transform:rotate(-90deg)}
+.fold>summary .muted{font-weight:500;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fold>.card{border:0;border-top:1px solid var(--line);border-radius:0}
+.hint{background:linear-gradient(135deg,#293b25,#17291f);padding:12px 14px}
+.aim-name{font-size:24px;font-weight:800;letter-spacing:-.5px;margin:0 0 2px}.subline{font-size:14px;margin-bottom:0}.routes-heading{font-size:14px;font-weight:700;margin-top:12px}
+.route-list{padding:0;margin:6px 0 0;list-style:none}.route-list li{padding:8px 0;border-bottom:1px solid #ffffff12;font-size:15px}.route-list li:last-child{border:0}.route-list .route{font-weight:700}.route-list small{display:block;color:var(--muted);font-size:14px}
+.advice{margin-top:10px;padding:10px 12px;border:1px solid #62723e;border-radius:12px;background:#ffffff08}
+.advice-k{font-size:14px;color:var(--lime)}.advice-title{font-size:19px;font-weight:800;margin:2px 0}
+.advice-detail{font-size:15px;margin:0;color:var(--cream)}.advice-warn{font-size:15px;margin:6px 0 0;color:#ffc6ac;font-weight:700}
+.scoreboard{padding:0;overflow:hidden}
+.table-scroll{overflow:auto}table{border-collapse:collapse;width:100%;text-align:right;font-variant-numeric:tabular-nums;font-size:15px;white-space:nowrap}
+th{font-size:14px;color:var(--muted);font-weight:500}td,th{padding:9px 8px;border-bottom:1px solid var(--line)}tr:last-child td{border-bottom:0}
+td:first-child,th:first-child{text-align:left}td:first-child{font-weight:700;white-space:normal;overflow-wrap:anywhere;min-width:80px}tr.active{background:#d8f2790b}tr.active td:first-child{color:var(--lime)}td.score{font-size:22px;font-weight:750}
 .status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--lime);margin-right:6px;vertical-align:middle}
-footer{margin-top:16px;display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--muted)}.saved-warning{color:#ffcc9d}
-.confetti{position:fixed;pointer-events:none;inset:0;overflow:hidden;z-index:9}.confetti i{position:absolute;top:-20px;width:9px;height:14px;animation:fall 3.5s ease-in forwards}@keyframes fall{to{transform:translate(80px,110vh) rotate(650deg)}}
-[hidden]{display:none!important}.sr-only{position:absolute;left:-10000px}
-/* Unfolded Fold / tablets: board on the left, everything else on the right */
-@media(min-width:760px){.wrap{padding:14px 18px 24px}
- .game-layout{grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:14px}
- .game-layout>*{grid-column:2}.game-layout>.input-card{grid-column:1;grid-row:1/span 8}
- .board-wrap{width:min(100%,max(320px,calc(100svh - 270px)))}.remaining{font-size:72px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.confetti{display:none}}
-.mode-toggle{display:inline-flex;border:1px solid var(--line);border-radius:12px;overflow:hidden}.mode-toggle button{border:0;border-radius:0;padding:9px 14px;background:transparent}.mode-toggle button[aria-pressed="true"]{background:var(--lime);color:#172219}
-.cam-note{font-size:12px;color:var(--muted);margin:8px 0 0}
-.viewer-mode #sound-toggle{display:none}
-
-.chip.subtle{background:transparent}.header-meta .chip{padding:6px 12px;font-size:13px}
-.game-layout{gap:8px}
-.active-card{padding:8px 12px}.active-card .eyebrow{font-size:10px;letter-spacing:1.2px}#active-name{margin:0;font-size:19px;line-height:1.15;overflow-wrap:anywhere}
-.remaining{font-size:54px;letter-spacing:-2.5px}.remaining-label{display:none}
-.dart-slot{width:50px;height:48px}
-.aim-strip{padding:4px 12px}
-.input-card{padding:6px 2px 10px}.input-top{flex-wrap:nowrap;padding:0 2px}.seg button{padding:6px 11px;font-size:14px}.seg-small button{font-size:13px;padding:6px 10px}
-.seg-label{align-self:center;font-size:11px;color:var(--muted);padding:0 4px 0 8px;text-transform:uppercase;letter-spacing:1px}
-.readout{min-height:46px;margin:6px 2px 4px}
-.board-wrap{width:min(100%,max(300px,calc(100svh - 330px)))}
-@media(min-width:760px){.remaining-label{display:block}.remaining{font-size:72px}.active-card{padding:14px 16px}#active-name{font-size:24px}.board-wrap{width:min(100%,max(320px,calc(100svh - 250px)))}}
-.seg button{min-width:48px}
-header .brand{white-space:nowrap}header button{white-space:nowrap}
-@media(max-width:420px){.brand .eyebrow{display:none}.brand{font-size:15px;letter-spacing:1.5px}.header-meta .chip{padding:6px 10px}}
-
-.voice-row{display:flex;gap:6px;align-items:stretch;margin:8px 2px 0}
-.voice-btn{flex:1;min-height:52px;font-size:17px;border-radius:14px;background:#1f3340}
-.voice-btn[aria-pressed="true"]{background:#7a1f1f;border-color:#ff6b5b;color:#fff;animation:pulse 1.6s ease-in-out infinite}
-.voice-btn.paused{animation:none;opacity:.8}
-@keyframes pulse{50%{box-shadow:0 0 0 6px #ff6b5b33}}
-#voice-mode button{min-height:52px}
-.voice-note{font-size:12px;color:var(--muted);margin:6px 6px 0}.voice-note.warn{color:#ffcc9d}
-.advice{margin-top:12px;padding:10px 12px;border:1px solid #62723e;border-radius:12px;background:#ffffff08}
-.advice-k{font-size:11px;text-transform:uppercase;letter-spacing:1.3px;color:var(--lime)}.advice-title{font-size:20px;font-weight:800;margin:2px 0}
-.advice-detail{font-size:14px;margin:0;color:var(--cream)}.advice-warn{font-size:14px;margin:6px 0 0;color:#ffc6ac;font-weight:700}
-
-.banter{margin:6px 4px 0;padding:8px 12px;border-radius:12px;font-weight:800;font-size:16px;text-align:center;line-height:1.25;animation:pop .25s ease-out}
+footer{margin:6px 4px 0;display:flex;flex-direction:column;gap:2px;font-size:14px;color:var(--muted)}.saved-warning{color:#ffcc9d}
+/* Settings sheet: bottom sheet on phones, side drawer on wide screens */
+.scrim{position:fixed;inset:0;background:#000b;z-index:40}
+.sheet{position:fixed;z-index:41;left:0;right:0;bottom:0;max-height:86vh;max-height:86dvh;overflow:auto;overscroll-behavior:contain;background:#142621;border:1px solid var(--line);border-bottom:0;border-radius:20px 20px 0 0;padding:0 calc(12px + var(--sar)) calc(16px + var(--sab)) calc(12px + var(--sal));transform:translateY(105%);visibility:hidden;transition:transform .2s ease,visibility 0s .2s;box-shadow:0 -10px 40px #000a}
+.sheet.open{transform:none;visibility:visible;transition:transform .2s ease}
+.sheet-head{position:sticky;top:0;z-index:1;display:flex;justify-content:space-between;align-items:center;padding:10px 0;background:#142621;border-bottom:1px solid var(--line);font-size:18px}
+.sheet-body{display:flex;flex-direction:column;gap:12px;padding-top:12px}
+.set-row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.set-col{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.set-k{font-size:15px;font-weight:700;color:var(--cream)}
+.sheet .seg button{min-height:44px;min-width:48px;font-size:15px;padding:6px 12px}.comm-row .seg{flex-wrap:wrap}
+.sheet .remote-card{padding:12px;background:#0f1f1a}
+body:not(.in-game) .game-only{display:none!important}
+.sheet-open{overflow:hidden}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:12px;overflow:hidden}.seg button{border:0;border-radius:0;background:transparent;padding:8px 12px;font-size:15px}.seg button[aria-pressed="true"]{background:var(--lime);color:#172219}
+.voice-note{font-size:14px;color:var(--muted);margin:0}.voice-note.warn{color:#ffcc9d}
+.board-note{font-size:14px;color:var(--muted);margin:0}
+.banter{padding:2px 10px;border-radius:12px;font-weight:800;font-size:14px;text-align:center;line-height:1.15;overflow:hidden;animation:pop .25s ease-out;box-shadow:0 4px 14px #0008}
 .banter.hype{background:#3b3214;border:1px solid var(--gold);color:#ffe9a8}.banter.roast{background:#3a1f1c;border:1px solid #b6493f;color:#ffd2c8}.banter.motivate{background:#16331f;border:1px solid var(--lime);color:var(--lime)}
 @keyframes pop{from{transform:scale(.94);opacity:.4}to{transform:none;opacity:1}}
-.comm-row{display:flex;align-items:center;justify-content:center;gap:4px;margin:12px 2px 0;flex-wrap:wrap}.comm-row .seg button{min-width:48px;min-height:44px;padding:6px 9px}
+/* readable minimums */
+.eyebrow{font-size:14px;letter-spacing:1.2px}.tiny{font-size:14px}.pill{font-size:14px}.rule-text{font-size:14px}.error{font-size:14px}
+.remote-sub,.remote-link,.remote-qr{font-size:14px!important}
+.confetti{position:fixed;pointer-events:none;inset:0;overflow:hidden;z-index:9}.confetti i{position:absolute;top:-20px;width:9px;height:14px;animation:fall 3.5s ease-in forwards}@keyframes fall{to{transform:translate(80px,110vh) rotate(650deg)}}
+[hidden]{display:none!important}.sr-only{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.viewer-mode #settings-open,.viewer-mode .sheet,.viewer-mode .scrim{display:none!important}
+.cam-note{font-size:14px;color:var(--muted);margin:8px 0 0}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.confetti{display:none}}
+/* Tiny-height phones */
+@media(max-height:600px) and (orientation:portrait){.remaining{font-size:40px}.aim-strip{height:36px}.readout{height:44px}.action-row button{min-height:48px}}
+
+/* ===== Side by side: unfolded Fold6 (884x1000, 1000x884) and phone landscape =====
+   Board on the left at min(width, height); player, aim, readout, buttons and the folds on the right (right column scrolls). */
+@media (min-width:700px),(orientation:landscape) and (min-width:560px){
+ .wrap{padding-left:calc(10px + var(--sal));padding-right:calc(10px + var(--sar))}
+ .in-game .wrap{height:100vh;height:100dvh;overflow:hidden;padding-bottom:calc(6px + var(--sab))}
+ .in-game main{height:calc(100% - var(--hdr) - var(--gap))}
+ .game-layout{display:grid;height:100%;grid-template-columns:minmax(0,1fr) var(--side,360px);grid-template-rows:auto auto auto auto auto minmax(0,1fr);column-gap:12px;row-gap:var(--gap)}
+ .play{display:contents}
+ .stage{grid-column:1;grid-row:1/-1;height:100%}
+ .play>:not(.stage),.below{grid-column:2}
+ .below{grid-row:6;overflow:auto;overscroll-behavior:contain;padding-top:0;min-height:0}
+ .remaining{font-size:52px}
+ .sheet{left:auto;top:0;width:min(440px,100%);max-height:none;border-radius:20px 0 0 20px;border:1px solid var(--line);border-right:0;transform:translateX(105%);padding-top:var(--sat)}
+ .sheet.open{transform:none}
+}
+@media (min-width:700px){.turn-total{white-space:normal}}
+@media (min-width:860px){:root{--side:min(400px,40vw)}.remaining{font-size:60px}#active-name{font-size:22px}#dart-slots .dart-slot{width:50px;height:52px}#dart-slots .dart-slot strong{font-size:17px}.action-row button{min-height:64px;font-size:18px}.readout{height:56px;font-size:16px}}
+/* Short landscape (Fold6 cover sideways): no page header row; ⚙ floats over the right column */
+@media (orientation:landscape) and (max-height:520px) and (min-width:560px){
+ :root{--hdr:0px}
+ .in-game header .lbl{display:none}.in-game header .chip{width:48px;height:48px;padding:0;font-size:22px;border-radius:50%}
+ .in-game.pad-mode .game-layout{grid-template-columns:minmax(0,1fr) minmax(280px,46%)}
+ .pad{display:grid;grid-template-columns:5fr 2fr;grid-template-rows:repeat(4,1fr);gap:5px}.pad-step{display:none}
+ .pad-nums{grid-column:1;grid-row:1/5;min-height:0}.pad-rings{grid-column:2;grid-row:1/3;grid-template-columns:1fr;min-height:0}.pad-specials{grid-column:2;grid-row:3/5;grid-template-columns:1fr;min-height:0}
+ .pad-rings button,.pad-specials button{min-height:44px;font-size:15px}
+ .game-layout{grid-template-columns:min(calc(100dvh - 12px - var(--sat) - var(--sab)),56vw) minmax(300px,1fr)}
+ .in-game header{position:fixed;z-index:30;top:calc(4px + var(--sat));right:calc(10px + var(--sar));height:auto;border:0;margin:0;padding:0;background:none}
+ .in-game header .brand{display:none}
+ .in-game .active-card{padding-right:60px}
+ .in-game main{height:100%}
+ .remaining{font-size:42px}.action-row button{min-height:50px}
+}
 
 .remote-card{padding:16px}.remote-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.remote-sub{font-size:13px;margin:4px 0 12px}#remote-state.on{border-color:var(--lime);color:var(--lime)}.wide-btn{width:100%}.remote-panel{margin-top:14px}.remote-grid{display:flex;gap:16px;flex-wrap:wrap;align-items:center}.remote-qr{background:#fff;border-radius:12px;padding:6px;width:min(220px,100%);aspect-ratio:1;flex:none;color:#000;font-size:13px;display:grid;place-items:center}.remote-qr svg{width:100%;height:100%;display:block}.remote-info{flex:1;min-width:200px}.remote-code-row{margin:8px 0 4px;font-size:15px}.remote-code{font-size:28px;letter-spacing:4px;color:var(--lime);font-family:ui-monospace,Menlo,monospace;margin-left:6px}.remote-link{color:var(--gold);word-break:break-all;font-size:13px}.remote-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.remote-actions button{padding:8px 12px;font-size:14px}.remote-check{margin-top:14px;font-size:14px}#remote-msg.warn{color:#ffcc9d}
 .viewer-mode #setup,.viewer-mode #game,.viewer-mode footer{display:none!important}
@@ -145,39 +193,53 @@ header .brand{white-space:nowrap}header button{white-space:nowrap}
 .v-slots .dart-slot{width:auto;height:auto;padding:8px 4px}.viewer #v-notice{margin:0;font-size:17px}
 
 </style></head><body>
-<div class="wrap"><header><div class="brand"><span class="brand-mark">◎</span> THE OCHE<span class="eyebrow">501</span></div><div class="header-meta"><button id="edit-game" type="button" class="chip subtle" hidden>New match</button><button id="sound-toggle" type="button" class="chip" aria-pressed="true">🔊 Sound on</button></div></header>
+<div class="wrap"><header><div class="brand"><span class="brand-mark">◎</span><span class="brand-name">THE OCHE</span><span class="eyebrow brand-501">501</span><span id="leg-label" class="hdr-leg"></span></div><div class="header-meta"><button id="settings-open" type="button" class="chip" aria-controls="settings" aria-expanded="false" aria-label="Settings">⚙<span class="lbl"> Settings</span></button></div></header>
 <section id="setup" class="setup"><div class="eyebrow">Your pub. Your people.</div><h1>A good night starts at the oche.</h1><p class="muted">Add your friends, then tap the board where each dart lands. The app does the maths and calls the score out loud.</p>
 <form id="setup-form" class="card setup-card"><h2>Who's throwing?</h2><div id="player-inputs"></div><button type="button" id="add-player" class="subtle">+ Add a player</button>
 <div class="settings"><label>Starting points<input id="start-score" type="number" min="2" max="10001" value="501" step="1" required inputmode="numeric"></label><div><label class="check"><input id="double-out" type="checkbox" checked>Double out</label><div class="muted tiny">Finish on a double or bullseye.</div></div></div>
 <div class="sound-row"><div><strong>Score caller</strong><div class="muted tiny">Says every dart, the turn total and what's left.</div></div><button type="button" id="sound-test" class="chip">▶ Test voice</button></div>
 <p id="setup-error" class="error" hidden></p><button class="primary wide" type="submit">Step up to the oche ↗</button><p class="rule-text">First listed player starts. The starter rotates with every new leg.</p></form></section>
 <main id="game" hidden>
-<div id="notice" class="notice" role="status" hidden></div>
 <div class="game-layout">
-<section id="active-card" class="card active-card"><div class="ac-main"><div id="leg-label" class="eyebrow">Leg 01</div><h2 id="active-name"></h2><div class="remaining-label">Points to finish</div><div id="remaining" class="remaining"></div></div><div class="ac-side"><div class="dart-slots" id="dart-slots"></div><div class="turn-total"><span id="darts-left">3 darts left</span> · This turn <strong id="turn-total">0</strong></div></div></section>
+<div class="play" id="play">
+<section id="active-card" class="card active-card"><div class="ac-who"><h2 id="active-name"></h2><div class="turn-total"><span id="darts-left">3 darts</span> · turn <strong id="turn-total">0</strong></div></div><div id="remaining" class="remaining" aria-label="Points to finish"></div><div class="dart-slots" id="dart-slots"></div></section>
 <section id="win-card" class="card win-card" hidden><div class="trophy">✦</div><div class="eyebrow">Game shot. And the leg.</div><h2 id="winner-name"></h2><p id="winner-summary" class="muted"></p><button id="new-leg" type="button" class="primary big">Play another leg →</button><p class="info-note">Next player starts · Match tally stays</p></section>
-<div id="aim-strip" class="aim-strip"><span class="aim-k">Aim</span><strong id="aim-short">—</strong><span id="aim-route" class="aim-route"></span></div>
-<section id="input-card" class="input-card" aria-label="Score entry">
-<div class="input-top"><div class="seg" role="group" aria-label="How to enter darts"><button id="mode-board" type="button" aria-pressed="true">🎯 Board</button><button id="mode-pad" type="button" aria-pressed="false">🔢 Pad</button></div><div class="seg seg-small" role="group" aria-label="Ring size" id="ring-size"><span class="seg-label">Rings</span><button id="rings-big" type="button" aria-pressed="true">Big</button><button id="rings-huge" type="button" aria-pressed="false">Huge</button></div></div>
-<div class="voice-row"><button id="voice-toggle" type="button" class="voice-btn" aria-pressed="false">🎤 Voice scoring</button><div class="seg seg-small" role="group" aria-label="What you say" id="voice-mode"><button id="voice-dart" type="button" aria-pressed="true">Per dart</button><button id="voice-total" type="button" aria-pressed="false">Turn total</button></div></div>
-<p id="voice-note" class="voice-note">Shout each dart: “treble twenty”, “double sixteen”, “bull”, “miss”, “undo”, or “scored sixty” for a whole turn. Needs internet: Chrome sends the audio to Google’s speech service.</p>
+<div class="aim-slot"><div id="aim-strip" class="aim-strip"><span class="aim-k">Aim</span><strong id="aim-short">—</strong><span id="aim-route" class="aim-route"></span></div><div id="banter" class="banter" hidden role="status"></div></div>
 <div id="readout" class="readout"><span id="readout-text">Tap where the dart landed</span><button id="readout-undo" type="button" class="readout-undo" hidden>↶ Undo</button></div>
-<div id="banter" class="banter" hidden role="status"></div>
+<section id="input-card" class="stage" aria-label="Score entry">
+<div id="notice" class="notice" role="status" hidden></div>
 <div id="board-wrap" class="board-wrap"><svg id="board" viewBox="-236 -236 472 472" role="img" aria-label="Dartboard with enlarged double and treble rings. Tap where the dart landed, or switch to the number pad."><circle r="235" fill="#0d130f" stroke="#56604c" stroke-width="2"/><g id="segments"></g><g id="wires"></g><g id="numbers"></g><g id="markers"></g></svg><div id="bubble" class="bubble" hidden aria-hidden="true"><strong id="bubble-code"></strong><span id="bubble-score"></span></div></div>
-<div id="pad" class="pad" hidden><div class="pad-step" id="pad-step">1 · Pick the number</div><div id="pad-nums" class="pad-nums"></div><div class="pad-step">2 · Pick the ring</div><div class="pad-rings"><button type="button" id="pad-S" data-ring="S" disabled>Single</button><button type="button" id="pad-D" data-ring="D" disabled>Double</button><button type="button" id="pad-T" data-ring="T" disabled>Treble</button></div><div class="pad-specials"><button type="button" id="outer-bull">25 · Outer bull</button><button type="button" id="bull">Bull · 50</button></div></div>
-<div class="action-row"><button id="miss" type="button" class="miss-btn">✕ Miss <span class="muted">· 0</span></button><button id="undo" type="button" class="undo-btn">↶ Undo last</button></div>
-<div class="comm-row"><span class="seg-label">Commentator</span><div class="seg seg-small" role="group" aria-label="Commentator" id="comm-mode"><button type="button" data-comm="off" aria-pressed="false">Off</button><button type="button" data-comm="hype" aria-pressed="false">Hype</button><button type="button" data-comm="roast" aria-pressed="true">Hype + Roast</button><button type="button" data-comm="savage" aria-pressed="false">Savage</button></div></div>
-<p class="board-note" id="board-note">Outer coloured ring = <b>Double</b> · inner coloured ring = <b>Treble</b> · centre = Bull. Rings are drawn bigger than a real board so they're easy to hit. A drag or scroll never scores: only a clean tap.</p>
+<div id="pad" class="pad" hidden><div class="pad-step" id="pad-step">1 · Pick the number</div><div id="pad-nums" class="pad-nums"></div><div class="pad-step">2 · Pick the ring</div><div class="pad-rings"><button type="button" id="pad-S" data-ring="S" disabled>Single</button><button type="button" id="pad-D" data-ring="D" disabled>Double</button><button type="button" id="pad-T" data-ring="T" disabled>Treble</button></div><div class="pad-specials"><button type="button" id="outer-bull">25 · Outer</button><button type="button" id="bull">Bull · 50</button></div></div>
 </section>
-<section id="hint-card" class="card hint"><div class="hint-title">↗ Your next dart</div><div id="aim-name" class="aim-name"></div><p id="aim-detail" class="subline muted"></p><div id="advice" class="advice"><div class="advice-k">What’s left · advice</div><div id="advice-title" class="advice-title"></div><p id="advice-detail" class="advice-detail"></p><p id="advice-warn" class="advice-warn" hidden></p></div><div id="routes-heading" class="routes-heading"></div><ul id="routes" class="route-list"></ul><p id="hint-note" class="info-note"></p></section>
-<section class="card scoreboard"><div class="scoreboard-heading"><h2>The scoreboard</h2><span class="muted tiny">3-dart avg · this leg</span></div><div class="table-scroll"><table><thead><tr><th>Player</th><th>Left</th><th>Avg</th><th>Darts</th><th>Last</th><th>Legs</th></tr></thead><tbody id="score-rows"></tbody></table></div></section>
-<section id="remote-card" class="card remote-card" aria-label="Scoreboard on another phone"><div class="remote-head"><div><div class="eyebrow">Scoreboard on another phone</div><p class="muted remote-sub">Friends follow the score live on their own phone. This phone keeps the game.</p></div><span id="remote-state" class="pill">Off</span></div>
+<div class="action-row"><button id="miss" type="button" class="miss-btn">✕ Miss</button><button id="undo" type="button" class="undo-btn">↶ Undo</button><button id="voice-toggle" type="button" class="voice-btn" aria-pressed="false">🎤 Voice</button></div>
+</div>
+<div class="below" id="below">
+<details class="fold" id="advice-fold" open><summary>↗ Next dart · finish advice</summary>
+<section id="hint-card" class="card hint"><div id="aim-name" class="aim-name"></div><p id="aim-detail" class="subline muted"></p><div id="advice" class="advice"><div class="advice-k">What’s left · advice</div><div id="advice-title" class="advice-title"></div><p id="advice-detail" class="advice-detail"></p><p id="advice-warn" class="advice-warn" hidden></p></div><div id="routes-heading" class="routes-heading"></div><ul id="routes" class="route-list"></ul><p id="hint-note" class="info-note"></p></section></details>
+<details class="fold" id="score-fold" open><summary>▦ The scoreboard <span class="muted">· 3-dart avg, this leg</span></summary>
+<section class="card scoreboard"><div class="table-scroll"><table><thead><tr><th>Player</th><th>Left</th><th>Avg</th><th>Darts</th><th>Last</th><th>Legs</th></tr></thead><tbody id="score-rows"></tbody></table></div></section></details>
+<footer><span id="save-status">Saved on this browser.</span><span>Play honestly. Aim boldly.</span></footer>
+</div>
+</div></main>
+<div id="scrim" class="scrim" hidden></div>
+<aside id="settings" class="sheet" aria-label="Settings" aria-hidden="true" inert>
+<div class="sheet-head"><strong>⚙ Settings</strong><button id="settings-close" type="button" class="chip">Done</button></div>
+<div class="sheet-body">
+<div class="set-row"><span class="set-k">Score caller</span><button id="sound-toggle" type="button" class="chip" aria-pressed="true">🔊 Sound on</button></div>
+<div class="set-row game-only"><span class="set-k">Enter darts with</span><div class="seg" role="group" aria-label="How to enter darts"><button id="mode-board" type="button" aria-pressed="true">🎯 Board</button><button id="mode-pad" type="button" aria-pressed="false">🔢 Pad</button></div></div>
+<div class="set-row game-only" id="ring-size"><span class="set-k">Ring size</span><div class="seg" role="group" aria-label="Ring size"><button id="rings-big" type="button" aria-pressed="true">Big</button><button id="rings-huge" type="button" aria-pressed="false">Huge</button></div></div>
+<p class="board-note game-only" id="board-note">Outer coloured ring = <b>Double</b> · inner coloured ring = <b>Treble</b> · centre = Bull. Rings are drawn bigger than a real board so they're easy to hit. A drag or scroll never scores: only a clean tap.</p>
+<div class="set-row"><span class="set-k">🎤 Voice: what you say</span><div class="seg" role="group" aria-label="What you say" id="voice-mode"><button id="voice-dart" type="button" aria-pressed="true">Per dart</button><button id="voice-total" type="button" aria-pressed="false">Turn total</button></div></div>
+<p id="voice-note" class="voice-note">Tap 🎤 Voice, then shout each dart: “treble twenty”, “double sixteen”, “bull”, “miss”, “undo”, or “scored sixty” for a whole turn. Needs internet: Chrome sends the audio to Google’s speech service.</p>
+<div class="set-col comm-row"><span class="set-k">Commentator</span><div class="seg" role="group" aria-label="Commentator" id="comm-mode"><button type="button" data-comm="off" aria-pressed="false">Off</button><button type="button" data-comm="hype" aria-pressed="false">Hype</button><button type="button" data-comm="roast" aria-pressed="true">Hype + Roast</button><button type="button" data-comm="savage" aria-pressed="false">Savage</button></div></div>
+<div class="game-only"><section id="remote-card" class="card remote-card" aria-label="Scoreboard on another phone"><div class="remote-head"><div><div class="eyebrow">Scoreboard on another phone</div><p class="muted remote-sub">Friends follow the score live on their own phone. This phone keeps the game.</p></div><span id="remote-state" class="pill">Off</span></div>
 <button id="remote-start" type="button" class="primary wide-btn">📺 Scoreboard on another phone</button>
 <div id="remote-panel" class="remote-panel" hidden><div class="remote-grid"><div id="remote-qr" class="remote-qr"></div><div class="remote-info"><div class="muted" style="font-size:13px">Scan with the other phone's camera, or open this link in its Chrome:</div><div class="remote-code-row">Room code <strong id="remote-code" class="remote-code">——————</strong></div><a id="remote-link" class="remote-link" target="_blank" rel="noopener"></a><div class="remote-actions"><button id="remote-copy" type="button">Copy link</button><button id="remote-share" type="button">Share…</button><button id="remote-new" type="button" class="subtle">New code</button><button id="remote-stop" type="button" class="subtle">Stop sharing</button></div></div></div>
 <label class="check remote-check"><input id="remote-controls" type="checkbox" checked> Let the scoreboard phone add and undo darts</label></div>
-<p id="remote-msg" class="cam-note" role="status"></p></section>
-</div></main>
-<footer><span id="save-status">Saved on this browser.</span><span>Play honestly. Aim boldly.</span></footer><div id="live" class="sr-only" aria-live="polite"></div></div><div id="confetti" class="confetti" aria-hidden="true"></div>
+<p id="remote-msg" class="cam-note" role="status"></p></section></div>
+<div class="set-row game-only"><span class="set-k">Start again</span><button id="edit-game" type="button" class="chip subtle" hidden>New match</button></div>
+</div></aside>
+<div id="live" class="sr-only" aria-live="polite"></div></div><div id="confetti" class="confetti" aria-hidden="true"></div>
 <script id="touchboard">
 // ===== Touch board geometry + tap guard =====
 // The board is drawn with NON-proportional rings: the treble and double rings are many times wider than on a
@@ -533,12 +595,12 @@ function idleText(){if(!state||state.winner!==null)return'Leg over';return ui.mo
 // ---------- Board taps ----------
 const guard=T.TapGuard({slop:12,cooldown:220});let pressCode=undefined;
 function boardPoint(e){return T.toBoard(e.clientX,e.clientY,$('board').getBoundingClientRect());}
-function showPress(e,code){document.querySelectorAll('#segments .press').forEach(n=>n.classList.remove('press'));const el=segEl(code);if(el)el.classList.add('press');
+function showPress(e,code){$('input-card').classList.add('pressing');document.querySelectorAll('#segments .press').forEach(n=>n.classList.remove('press'));const el=segEl(code);if(el)el.classList.add('press');
  const r=$('board-wrap').getBoundingClientRect(),b=$('bubble');b.hidden=false;b.classList.toggle('out',!code);const hit=code&&C.target(code);
  $('bubble-code').textContent=code?dn(code):'Outside';$('bubble-score').textContent=code?hit.score+' pts':'not a score';
  const x=Math.min(r.width-50,Math.max(50,e.clientX-r.left)),y=Math.max(70,e.clientY-r.top-34);b.style.left=x+'px';b.style.top=y+'px';
  readout(code?`${dn(code)} · ${hit.score} — lift to score`:'Outside the board — lift to ignore','pressing');}
-function clearPress(){document.querySelectorAll('#segments .press').forEach(n=>n.classList.remove('press'));$('bubble').hidden=true;pressCode=undefined;}
+function clearPress(){$('input-card').classList.remove('pressing');document.querySelectorAll('#segments .press').forEach(n=>n.classList.remove('press'));$('bubble').hidden=true;pressCode=undefined;}
 const board=$('board');
 board.addEventListener('pointerdown',e=>{e.preventDefault();if(!state||state.winner!==null)return;const r=guard.down(e.pointerId,e.clientX,e.clientY,e.timeStamp||performance.now());
  if(r.cancel){clearPress();readout('Two fingers — nothing scored. Tap with one finger.','warn');return;}if(!r.started)return;
@@ -567,7 +629,7 @@ onTap($('bull'),()=>{padNum=null;renderPad();enter(C.target('Bull'),[0,0]);});
 onTap($('miss'),()=>{padNum=null;renderPad();enter(C.target('M'),null);});
 
 // ---------- Modes ----------
-function applyUi(){$('mode-board').setAttribute('aria-pressed',String(ui.mode==='board'));$('mode-pad').setAttribute('aria-pressed',String(ui.mode==='pad'));$('board-wrap').hidden=ui.mode!=='board';$('pad').hidden=ui.mode!=='pad';$('ring-size').hidden=ui.mode!=='board';$('board-note').hidden=ui.mode!=='board';
+function applyUi(){document.body.classList.toggle('pad-mode',ui.mode==='pad');$('mode-board').setAttribute('aria-pressed',String(ui.mode==='board'));$('mode-pad').setAttribute('aria-pressed',String(ui.mode==='pad'));$('board-wrap').hidden=ui.mode!=='board';$('pad').hidden=ui.mode!=='pad';$('ring-size').hidden=ui.mode!=='board';$('board-note').hidden=ui.mode!=='board';
  $('rings-big').setAttribute('aria-pressed',String(ui.rings==='big'));$('rings-huge').setAttribute('aria-pressed',String(ui.rings==='huge'));readout(idleText(),'');}
 onTap($('mode-board'),()=>{ui.mode='board';saveUi();applyUi();});onTap($('mode-pad'),()=>{ui.mode='pad';saveUi();padNum=null;renderPad();applyUi();});
 onTap($('rings-big'),()=>{ui.rings='big';saveUi();buildBoard();applyUi();});onTap($('rings-huge'),()=>{ui.rings='huge';saveUi();buildBoard();applyUi();});
@@ -618,8 +680,8 @@ function renderHints(){const p=state.players[state.current],left=3-state.darts.l
  $('advice-title').textContent=p.score+' left: '+adv.title;$('advice-detail').textContent=adv.detail;$('advice-warn').hidden=!adv.warn;$('advice-warn').textContent=adv.warn?'⚠ '+adv.warn:'';
  highlight();}
 function render(){if(!state)return;$('setup').hidden=true;$('game').hidden=false;$('edit-game').hidden=false;const p=state.players[state.current],won=state.winner!==null;
- $('leg-label').textContent=`At the oche · Leg ${state.leg} · ${state.start} ${state.doubleOut?'double out':'straight out'}`;$('active-name').textContent=p.name;$('remaining').textContent=p.score;{const l=3-state.darts.length;$('darts-left').textContent=l+(l===1?' dart left':' darts left');}
- $('dart-slots').innerHTML=[0,1,2].map(i=>{const d=state.darts[i];return`<div class="dart-slot ${d?'filled':''}">${d?`<strong>${dn(d.code)}</strong><span>${d.score}</span>`:`<span>Dart ${i+1}</span><strong>—</strong>`}</div>`;}).join('');
+ document.body.classList.add('in-game');$('leg-label').textContent=`Leg ${state.leg} · ${state.start} ${state.doubleOut?'double out':'straight out'}`;$('active-name').textContent=p.name;$('remaining').textContent=p.score;{const l=3-state.darts.length;$('darts-left').textContent=l+(l===1?' dart':' darts');}
+ $('dart-slots').innerHTML=[0,1,2].map(i=>{const d=state.darts[i];return`<div class="dart-slot ${d?'filled':''}">${d?`<strong>${dn(d.code)}</strong><span>${d.score}</span>`:`<span class="sr-only">Dart ${i+1} </span><strong class="slot-n">${i+1}</strong>`}</div>`;}).join('');
  $('turn-total').textContent=state.darts.reduce((n,d)=>n+d.score,0);$('notice').hidden=!state.notice;$('notice').textContent=state.notice;$('notice').className='notice'+(state.noticeType==='bust'?' bust':'');
  $('undo').disabled=!history.length;$('readout-undo').disabled=!history.length;$('active-card').hidden=won;$('win-card').hidden=!won;$('miss').disabled=won;$('outer-bull').disabled=won;$('bull').disabled=won;board.style.opacity=won?'.55':'1';
  if(won){$('winner-name').textContent=p.name+' wins!';$('winner-summary').textContent=`${p.darts} darts · ${(p.points/p.darts*3).toFixed(1)} average · ${p.legs} leg${p.legs===1?'':'s'} won`;}
@@ -634,16 +696,16 @@ $('setup-form').onsubmit=e=>{e.preventDefault();const start=+$('start-score').va
  const names=setupNames.map((n,i)=>n.trim()||'Player '+(i+1));state=C.newGame(names,start,$('double-out').checked);history=[];save();render();readout(idleText(),'');Voice.say(`Game on. ${names[0]} to throw. ${O.words(start)}.`);window.scrollTo({top:0,behavior:'smooth'});};
 onTap($('undo'),()=>undo());onTap($('readout-undo'),()=>undo());
 $('new-leg').onclick=()=>{state=C.newLeg(state);history=[];save();render();readout(idleText(),'');$('confetti').replaceChildren();Voice.say(`Game on. ${state.players[state.current].name} to throw.`);};
-$('edit-game').onclick=()=>{if(!confirm('Start a new match? This clears the current match and leg tallies.'))return;setupNames=state.players.map(p=>p.name);$('start-score').value=state.start;$('double-out').checked=state.doubleOut;state=null;history=[];save();$('game').hidden=true;$('edit-game').hidden=true;$('setup').hidden=false;updateSetup();};
+$('edit-game').onclick=()=>{if(!confirm('Start a new match? This clears the current match and leg tallies.'))return;setupNames=state.players.map(p=>p.name);$('start-score').value=state.start;$('double-out').checked=state.doubleOut;state=null;history=[];save();$('game').hidden=true;$('edit-game').hidden=true;$('setup').hidden=false;document.body.classList.remove('in-game');$('leg-label').textContent='';Sheet.close();updateSetup();};
 $('sound-toggle').onclick=()=>{Voice.set(!Voice.on());if(Voice.on())Voice.say('Sound on.');};
 $('sound-test').onclick=()=>{if(!Voice.on())Voice.set(true);Voice.say('Treble twenty, sixty. One hundred and eighty!');};
 // ---------- Voice scoring (speech recognition) ----------
 const Mic=(()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let rec=null,on=false,paused=false,running=false,restartT=0,resumeT=0,errs=0,wake=null;
  const btn=$('voice-toggle'),note=$('voice-note');
  const lang=()=>{const l=(navigator.language||'').toLowerCase();return /^en-(gb|us|au|in|ie|nz|za|ca)$/.test(l)?navigator.language:'en-GB';};
- function msg(text,warn){note.textContent=text;note.classList.toggle('warn',!!warn);}
- function show(){if(!SR){btn.disabled=true;btn.textContent='🎤 Voice scoring not available here';msg('This browser has no speech recognition. Use Chrome on Android, or tap the board.',true);return;}
-  btn.setAttribute('aria-pressed',String(on));btn.classList.toggle('paused',on&&paused);btn.textContent=!on?'🎤 Voice scoring':paused?'🔈 Speaking… (mic paused)':'🎤 Listening — tap to stop';}
+ function msg(text,warn,brief){note.textContent=text;note.classList.toggle('warn',!!warn);if(warn||brief)readout('🎤 '+(brief||text),warn?'warn':'');}
+ function show(){if(!SR){btn.disabled=true;btn.textContent='🎤 Voice not available';btn.title='Voice scoring is not available in this browser';msg('This browser has no speech recognition. Use Chrome on Android, or tap the board.',true);return;}
+  btn.setAttribute('aria-pressed',String(on));btn.classList.toggle('paused',on&&paused);btn.textContent=!on?'🎤 Voice':paused?'🔈 Paused':'🎤 Listening';btn.setAttribute('aria-label',!on?'Voice scoring: off. Tap to start listening':paused?'Voice scoring: mic paused while the phone is speaking':'Voice scoring: listening. Tap to stop');}
  function make(){const r=new SR();r.continuous=true;r.interimResults=false;r.maxAlternatives=3;r.lang=lang();
   r.onstart=()=>{running=true;show();};
   r.onresult=e=>{if(paused)return;for(let i=e.resultIndex;i<e.results.length;i++){const res=e.results[i];if(res.isFinal===false)continue;const alts=[];for(let k=0;k<res.length;k++)alts.push(String(res[k].transcript||'').trim());heard(alts.filter(Boolean));}};
@@ -654,7 +716,7 @@ const Mic=(()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognitio
  function stop(){clearTimeout(restartT);try{if(rec&&running)rec.abort();}catch(e){}running=false;}
  function schedule(ms){clearTimeout(restartT);restartT=setTimeout(start,ms);}
  async function lock(){try{if(navigator.wakeLock&&!wake)wake=await navigator.wakeLock.request('screen');}catch(e){}}
- function toggle(){if(!SR)return;on=!on;if(on){paused=false;errs=0;msg('Listening. Shout each dart: “treble twenty”, “double sixteen”, “bull”, “miss”, “undo”, “next”, or “scored sixty”. Needs internet.');start();lock();}else{stop();clearTimeout(resumeT);paused=false;try{wake&&wake.release();}catch(e){}wake=null;msg('Voice scoring is off. Tap it and allow the microphone.');}show();}
+ function toggle(){if(!SR)return;on=!on;if(on){paused=false;errs=0;msg('Listening. Shout each dart: “treble twenty”, “double sixteen”, “bull”, “miss”, “undo”, “next”, or “scored sixty”. Needs internet.',false,'Listening — say each dart, e.g. “treble twenty”');start();lock();}else{stop();clearTimeout(resumeT);paused=false;try{wake&&wake.release();}catch(e){}wake=null;msg('Voice scoring is off. Tap it and allow the microphone.');}show();}
  // Don't listen to ourselves: pause while the app is talking, resume the moment it stops (safety timer if onend never fires).
  Voice.hook({start(text){if(!on)return;paused=true;stop();clearTimeout(resumeT);resumeT=setTimeout(resume,900+String(text).length*75);show();},end(){if(!on)return;clearTimeout(resumeT);resumeT=setTimeout(resume,150);}});
  function resume(){if(!on)return;paused=false;start();show();}
@@ -678,6 +740,13 @@ function applyVoiceMode(){$('voice-dart').setAttribute('aria-pressed',String(ui.
 onTap($('voice-dart'),()=>{ui.voiceMode='dart';saveUi();applyVoiceMode();});onTap($('voice-total'),()=>{ui.voiceMode='total';saveUi();applyVoiceMode();});
 function applyComm(){$('comm-mode').querySelectorAll('[data-comm]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.comm===ui.comm)));banter.setMode(ui.comm);if(ui.comm==='off')showBanter('');}
 $('comm-mode').querySelectorAll('[data-comm]').forEach(b=>onTap(b,()=>{ui.comm=b.dataset.comm;saveUi();applyComm();}));
+// ---------- Settings sheet ----------
+const Sheet=(()=>{const el=$('settings'),scrim=$('scrim'),openBtn=$('settings-open');let last=null;
+ function open(){last=document.activeElement;el.classList.add('open');el.removeAttribute('inert');el.setAttribute('aria-hidden','false');scrim.hidden=false;openBtn.setAttribute('aria-expanded','true');document.body.classList.add('sheet-open');}
+ function close(){if(!el.classList.contains('open'))return;el.classList.remove('open');el.setAttribute('inert','');el.setAttribute('aria-hidden','true');scrim.hidden=true;openBtn.setAttribute('aria-expanded','false');document.body.classList.remove('sheet-open');}
+ onTap(openBtn,()=>el.classList.contains('open')?close():open());onTap($('settings-close'),close);scrim.addEventListener('click',close);
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});return{open,close,isOpen:()=>el.classList.contains('open')};})();
+window.OcheApp.sheet=Sheet;
 buildBoard();applyUi();updateSetup();renderPad();Voice.show();applyVoiceMode();applyComm();
 try{const stored=localStorage.getItem(KEY);if(stored){const data=JSON.parse(stored);if(valid(data.state)){state=data.state;history=Array.isArray(data.history)?data.history.filter(valid):[];render();readout(idleText(),'');}}}catch(e){saved=false;}showSave();
 })();
