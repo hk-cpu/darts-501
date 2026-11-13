@@ -236,6 +236,7 @@ body:not(.in-game) .game-only{display:none!important}
 <p class="board-note game-only" id="board-note">Outer coloured ring = <b>Double</b> · inner coloured ring = <b>Treble</b> · centre = Bull. Rings are drawn bigger than a real board so they're easy to hit. A drag or scroll never scores: only a clean tap.</p>
 <div class="set-row"><span class="set-k">🎤 Voice: what you say</span><div class="seg" role="group" aria-label="What you say" id="voice-mode"><button id="voice-dart" type="button" aria-pressed="true">Per dart</button><button id="voice-total" type="button" aria-pressed="false">Turn total</button></div></div>
 <p id="voice-note" class="voice-note">Tap 🎤 Voice, then shout each dart: “treble twenty”, “double sixteen”, “bull”, “miss”, “undo”, or “scored sixty” for a whole turn. Needs internet: Chrome sends the audio to Google’s speech service.</p>
+<div class="set-row"><span class="set-k">Talk speed</span><div class="seg" role="group" aria-label="Talk speed" id="speed-mode"><button type="button" data-speed="normal" aria-pressed="true">Normal</button><button type="button" data-speed="fast" aria-pressed="false">Fast</button><button type="button" data-speed="rapid" aria-pressed="false">Rapid</button></div></div>
 <div class="set-col comm-row"><span class="set-k">Commentator</span><div class="seg" role="group" aria-label="Commentator" id="comm-mode"><button type="button" data-comm="off" aria-pressed="false">Off</button><button type="button" data-comm="hype" aria-pressed="false">Hype</button><button type="button" data-comm="roast" aria-pressed="true">Hype + Roast</button><button type="button" data-comm="savage" aria-pressed="false">Savage</button><button type="button" data-comm="westcoast" aria-pressed="false" aria-label="Savage, West Coast style">West Coast</button></div><p class="comm-note" id="comm-note" aria-live="polite"></p></div>
 <div class="game-only"><section id="remote-card" class="card remote-card" aria-label="Scoreboard on another phone"><div class="remote-head"><div><div class="eyebrow">Scoreboard on another phone</div><p class="muted remote-sub">Friends follow the score live on their own phone. This phone keeps the game.</p></div><span id="remote-state" class="pill">Off</span></div>
 <button id="remote-start" type="button" class="primary wide-btn">📺 Scoreboard on another phone</button>
@@ -565,8 +566,8 @@ if(/[?&]view=/.test(location.search))return;// the scoreboard phone only runs th
 const C=DartsCore,T=TouchBoard,O=OcheCallout,A=OcheAdvice,VI=OcheVoiceIn,BT=OcheBanter,$=id=>document.getElementById(id),NS='http://www.w3.org/2000/svg';
 const KEY='the-oche-501-v1',UIKEY='the-oche-touch-v1',SKEY='the-oche-sound-v1';
 let state=null,history=[],suggested=null,setupNames=['',''],saved=true;
-let ui={mode:'board',rings:'big',voiceMode:'dart',comm:'roast'};try{Object.assign(ui,JSON.parse(localStorage.getItem(UIKEY)||'{}'));}catch(e){}
-if(!T.LAYOUTS[ui.rings])ui.rings='big';if(ui.voiceMode!=='total')ui.voiceMode='dart';if(!BT.MODES.includes(ui.comm))ui.comm='roast';if(ui.mode!=='pad')ui.mode='board';
+let ui={mode:'board',rings:'big',voiceMode:'dart',comm:'roast',speed:null};try{Object.assign(ui,JSON.parse(localStorage.getItem(UIKEY)||'{}'));}catch(e){}
+if(!T.LAYOUTS[ui.rings])ui.rings='big';if(ui.voiceMode!=='total')ui.voiceMode='dart';if(!BT.MODES.includes(ui.comm))ui.comm='roast';if(ui.mode!=='pad')ui.mode='board';if(!['normal','fast','rapid'].includes(ui.speed))ui.speed=null;
 const saveUi=()=>{try{localStorage.setItem(UIKEY,JSON.stringify(ui));}catch(e){}};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const node=(tag,attrs)=>{const n=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);return n;};
@@ -593,10 +594,13 @@ const Voice=(()=>{let on=true;try{on=localStorage.getItem(SKEY)!=='off';}catch(e
   const best=list=>list.filter(isMale).sort((a,b)=>score(a)-score(b))[0];
   return best(us)||best(en)||us.filter(v=>!FEM.test(id(v))).sort((a,b)=>(hq(a)?0:1)-(hq(b)?0:1))[0]||null;}
  // brit = the match caller; west = laid back: a little slower and lower, but not so low it sounds robotic.
- const STYLES={brit:{rate:1.08,pitch:1,jitter:0},west:{rate:0.9,pitch:0.7,jitter:1}};
+ // Talk speed (all modes): Normal 1.0 / Fast 1.25 / Rapid 1.5. Not chosen yet = Normal for the British caller, Fast for West Coast.
+ const SPEEDS={normal:1,fast:1.25,rapid:1.5};
+ const STYLES={brit:{pitch:1,jitter:0,speed:'normal',gap:[150,300]},west:{pitch:0.7,jitter:1,speed:'fast',gap:[40,90]}};let speedPick=null;
+ const speed=()=>speedPick||STYLES[style].speed,rate=()=>SPEEDS[speed()];
  if(synth()){pick();try{speechSynthesis.addEventListener('voiceschanged',pick);}catch(e){}}
  let rnd=Math.random;
- function tune(){const s=STYLES[style];if(!s.jitter)return{rate:s.rate,pitch:s.pitch};const j=(a)=>(rnd()*2-1)*a;return{rate:+(s.rate+j(0.04)).toFixed(3),pitch:+(s.pitch+j(0.05)).toFixed(3)};}
+ function tune(){const s=STYLES[style],r=rate();if(!s.jitter)return{rate:r,pitch:s.pitch};const j=(a)=>(rnd()*2-1)*a;return{rate:+(r+j(0.04)).toFixed(3),pitch:+(s.pitch+j(0.05)).toFixed(3)};}
  function utter(text,vol,t){const u=new SpeechSynthesisUtterance(text);const v=style==='west'?westVoice:voice;t=t||tune();if(v)u.voice=v;u.lang=v?v.lang:(style==='west'?'en-US':'en-GB');u.rate=t.rate;u.pitch=t.pitch;u.volume=vol;return u;}
  // West Coast: speak a callout as short phrases (score / what's left / setup / quip) with a natural 150-300 ms pause between.
  const chunks=text=>style==='west'?String(text).split(/(?<=[.!?])\s+/).map(x=>x.trim()).filter(Boolean):[text];
@@ -604,11 +608,11 @@ const Voice=(()=>{let on=true;try{on=localStorage.getItem(SKEY)!=='off';}catch(e
  function unlock(){if(unlocked||!synth())return;unlocked=true;try{speechSynthesis.speak(utter(' ',0));}catch(e){}}
  function say(text){last=text||'';if(!on||!text)return false;const s=synth();if(!s)return false;try{const busy=s.speaking||s.pending;const id=++sid;s.cancel();// drop anything queued so fast taps never lag
    const parts=chunks(text),t=tune();let i=0;const done=()=>{if(id===sid)hooks.end();};hooks.start(text);
-   const next=()=>{if(id!==sid)return;if(i>=parts.length){done();return;}const u=utter(parts[i++],1,t);u.onend=()=>{if(id!==sid)return;if(i>=parts.length)done();else setTimeout(next,150+Math.round(rnd()*150));};u.onerror=done;try{s.speak(u);}catch(e){done();}};
+   const next=()=>{if(id!==sid)return;if(i>=parts.length){done();return;}const u=utter(parts[i++],1,t);u.onend=()=>{if(id!==sid)return;if(i>=parts.length)done();else setTimeout(next,STYLES[style].gap[0]+Math.round(rnd()*(STYLES[style].gap[1]-STYLES[style].gap[0])));};u.onerror=done;try{s.speak(u);}catch(e){done();}};
    if(busy)setTimeout(next,40);else next();return true;}catch(e){hooks.end();return false;}}
  function set(v){on=!!v;try{localStorage.setItem(SKEY,on?'on':'off');}catch(e){}if(!on&&synth())try{speechSynthesis.cancel();}catch(e){}show();}
  function show(){const b=$('sound-toggle');b.setAttribute('aria-pressed',String(on));b.textContent=on?'🔊 Sound on':'🔇 Sound off';$('sound-test').disabled=!synth();if(!synth())$('sound-test').textContent='Voice not supported here';}
- return{say,set,show,unlock,pickWest,chunks,_rng(f){rnd=f||Math.random;},setStyle(s){style=STYLES[s]?s:'brit';},style:()=>style,voiceName:()=>{const v=style==='west'?westVoice:voice;return v?v.name:'(browser default)';},STYLES,on:()=>on,last:()=>last,supported:()=>!!synth(),hook(h){hooks=h;}};})();
+ return{say,set,show,unlock,pickWest,chunks,_rng(f){rnd=f||Math.random;},setStyle(s){style=STYLES[s]?s:'brit';},setSpeed(s){speedPick=SPEEDS[s]?s:null;},speed,rate,SPEEDS,gap:()=>STYLES[style].gap.slice(),style:()=>style,voiceName:()=>{const v=style==='west'?westVoice:voice;return v?v.name:'(browser default)';},STYLES,on:()=>on,last:()=>last,supported:()=>!!synth(),hook(h){hooks=h;}};})();
 document.addEventListener('pointerdown',()=>Voice.unlock(),{capture:true,passive:true});
 document.addEventListener('keydown',()=>Voice.unlock(),{capture:true,passive:true});
 
@@ -771,7 +775,7 @@ const Mic=(()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognitio
  async function lock(){try{if(navigator.wakeLock&&!wake)wake=await navigator.wakeLock.request('screen');}catch(e){}}
  function toggle(){if(!SR)return;on=!on;if(on){paused=false;errs=0;msg('Listening. Shout each dart: “treble twenty”, “double sixteen”, “bull”, “miss”, “undo”, “next”, or “scored sixty”. Needs internet.',false,'Listening — say each dart, e.g. “treble twenty”');start();lock();}else{stop();clearTimeout(resumeT);paused=false;try{wake&&wake.release();}catch(e){}wake=null;msg('Voice scoring is off. Tap it and allow the microphone.');}show();}
  // Don't listen to ourselves: pause while the app is talking, resume the moment it stops (safety timer if onend never fires).
- Voice.hook({start(text){if(!on)return;paused=true;stop();clearTimeout(resumeT);resumeT=setTimeout(resume,(Voice.style()==='west'?900+String(text).length*95+(String(text).match(/[.!?]\s/g)||[]).length*300:900+String(text).length*75));show();},end(){if(!on)return;clearTimeout(resumeT);resumeT=setTimeout(resume,150);}});
+ Voice.hook({start(text){if(!on)return;paused=true;stop();clearTimeout(resumeT);resumeT=setTimeout(resume,900+Math.round(String(text).length*81/Voice.rate())+(Voice.style()==='west'?(String(text).match(/[.!?]\s/g)||[]).length*Voice.gap()[1]:0));show();},end(){if(!on)return;clearTimeout(resumeT);resumeT=setTimeout(resume,Voice.style()==='west'?80:150);}});
  function resume(){if(!on)return;paused=false;start();show();}
  document.addEventListener('visibilitychange',()=>{if(!document.hidden&&on){wake=null;lock();if(!running&&!paused)start();}});
  btn.addEventListener('click',toggle);show();
@@ -791,8 +795,10 @@ function heard(alts){if(!alts.length)return;let pick=null,cmds=null;for(const a 
 window.OcheApp.mic=Mic;window.OcheApp.heard=a=>heard(a);window.OcheApp.banter=banter;
 function applyVoiceMode(){$('voice-dart').setAttribute('aria-pressed',String(ui.voiceMode==='dart'));$('voice-total').setAttribute('aria-pressed',String(ui.voiceMode==='total'));}
 onTap($('voice-dart'),()=>{ui.voiceMode='dart';saveUi();applyVoiceMode();});onTap($('voice-total'),()=>{ui.voiceMode='total';saveUi();applyVoiceMode();});
-const COMM_NOTES={off:'Off: just the score caller, no banter.',hype:'Hype: big cheers for good darts, no roasts.',roast:'Hype + Roast: cheers for big darts, friendly roasts for bad ones.',savage:'Savage: cheekier roasts, same British caller.',westcoast:'West Coast: Savage with laid-back West Coast slang, a line on every dart, spoken slower and deeper.'};
-function applyComm(){$('comm-note').textContent=COMM_NOTES[ui.comm]||'';$('comm-mode').querySelectorAll('[data-comm]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.comm===ui.comm)));banter.setMode(ui.comm);Voice.setStyle(ui.comm==='westcoast'?'west':'brit');if(ui.comm==='off')showBanter('');}
+const COMM_NOTES={off:'Off: just the score caller, no banter.',hype:'Hype: big cheers for good darts, no roasts.',roast:'Hype + Roast: cheers for big darts, friendly roasts for bad ones.',savage:'Savage: cheekier roasts, same British caller.',westcoast:'West Coast: Savage with laid-back West Coast slang, a line on every dart, a deeper voice that talks fast.'};
+function applySpeed(){Voice.setSpeed(ui.speed);const eff=Voice.speed();$('speed-mode').querySelectorAll('[data-speed]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.speed===eff)));}
+$('speed-mode').querySelectorAll('[data-speed]').forEach(b=>onTap(b,()=>{ui.speed=b.dataset.speed;saveUi();applySpeed();Voice.say(b.dataset.speed==='normal'?'Normal speed.':b.dataset.speed==='fast'?'Fast talk.':'Rapid fire.');}));
+function applyComm(){$('comm-note').textContent=COMM_NOTES[ui.comm]||'';$('comm-mode').querySelectorAll('[data-comm]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.comm===ui.comm)));banter.setMode(ui.comm);Voice.setStyle(ui.comm==='westcoast'?'west':'brit');applySpeed();if(ui.comm==='off')showBanter('');}
 $('comm-mode').querySelectorAll('[data-comm]').forEach(b=>onTap(b,()=>{ui.comm=b.dataset.comm;saveUi();applyComm();if(ui.comm==='westcoast')Voice.say('West Coast commentary. Keep it smooth, nephew.');}));
 // ---------- Settings sheet ----------
 const Sheet=(()=>{const el=$('settings'),scrim=$('scrim'),openBtn=$('settings-open');let last=null;
